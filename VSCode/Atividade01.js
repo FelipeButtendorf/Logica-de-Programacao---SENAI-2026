@@ -20,7 +20,7 @@ var naoUsarVar = "Var é uma forma antiga, por isso não é utilizada";
 let minhaIdade = "18";
 const ANO_NASCIMENTO = 2008;
 console.log("----- Exercicio 1 ---------------")
-console.log(    `Meu nome é ${meuNome}\n ${naoUsarVar}
+console.log(`Meu nome é ${meuNome}\n ${naoUsarVar}
 Minha idade é ${minhaIdade}\n Eu nasci em ${ANO_NASCIMENTO}`);
 
 // ------------------------------------------------------------
@@ -38,7 +38,7 @@ let pais = "Brasil"
 let fraseMoradia = `Eu moro em ${cidade}, no ${pais}.`
 
 console.log("----- Exercicio 2 ---------------")
-console.log(    fraseMoradia);
+console.log(fraseMoradia);
 
 // ------------------------------------------------------------
 // EXERCÍCIO 3 – Boolean
@@ -53,7 +53,7 @@ let maiorDeIdade = true
 let temCNH = false
 
 console.log("----- Exercicio 3 ---------------")
-console.log(    maiorDeIdade,typeof maiorDeIdade, temCNH, typeof temCNH)
+console.log(maiorDeIdade,typeof maiorDeIdade, temCNH, typeof temCNH)
 
 // ------------------------------------------------------------
 // EXERCÍCIO 4 – Undefined e Null
@@ -68,7 +68,7 @@ let apelido
 let enderecoAtual = null
 
 console.log("----- Exercicio 4 ---------------")
-console.log(    apelido, typeof apelido, enderecoAtual, typeof enderecoAtual); // object é um regra
+console.log(apelido, typeof apelido, enderecoAtual, typeof enderecoAtual); // object é um regra
 // da linguagem JavaScript
 
 // ------------------------------------------------------------
@@ -92,7 +92,7 @@ let variavelCinco = null
 let variavelSeis = 3.14
 
 console.log("----- Exercicio 5 ---------------")
-console.log(    typeof variavelUm, typeof variavelDois, typeof variavelTres, typeof variavelQuatro, typeof variavelCinco, typeof variavelSeis)
+console.log(typeof variavelUm, typeof variavelDois, typeof variavelTres, typeof variavelQuatro, typeof variavelCinco, typeof variavelSeis)
     
 
 // ------------------------------------------------------------
@@ -113,4 +113,4 @@ let xcidade = "Jaraguá dos Sul"
 let estudandoJS = true
 
 console.log("----- Exercicio 6 ---------------")
-console.log(    `Olá! Meu nome é ${nome}, tenho ${idade} anos,\n moro em ${xcidade}, meço ${altura}m\n e estou estudando JavaScript: ${estudandoJS}.`)
+console.log(`Olá! Meu nome é ${nome}, tenho ${idade} anos,\n moro em ${xcidade}, meço ${altura}m\n e estou estudando JavaScript: ${estudandoJS}.`)
