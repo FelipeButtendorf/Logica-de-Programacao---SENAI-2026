@@ -1,1 +1,11 @@
-let cores = 
+let cores = ["azul", "amarelo", "vermelho"]
+console.log(cores)
+console.log(cores[0])
+cores.push("roxo")
+console.log(cores)
+cores.pop()
+console.log(cores)
+cores.unshift("marrom")
+console.log(cores)
+cores.shift()
+console.log(cores)

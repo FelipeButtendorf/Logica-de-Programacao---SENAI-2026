@@ -78,3 +78,24 @@ nome // ja possui o valor desejado
 let objetivoAno = "começar a fazer acadêmia"
 console.log("=====EXERCÍCIO 5=====")
 console.log(`Meu nome é ${nome} e pretendo ${objetivoAno} ainda esse ano.`);
+// ------------------------------------------------------------
+// EXERCÍCIO 6 – Menu
+// ------------------------------------------------------------
+// Utilizando apenas console.log(), reproduza o menu que esta na imagem "exemplo-menu-atividade-01-2" anexa junto a esta atividade
+
+// → Seu código aqui:
+
+console.log(`
+====================================
+        SISTEMA DO USUÁRIO
+====================================
+2 - Editar Perfil
+3 - Configurações 
+4 - Notificações
+5 - Relatórios
+6 - Ajuda
+7 - Sobre o Sistema 
+0 - Sair
+====================================
+Digite o número da opção desejada
+`)
