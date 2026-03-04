@@ -103,11 +103,6 @@ const catalogo = {
 }
 console.log(catalogo)
 
-
-
-     
-
-
 // ------------------------------------------------------------
 // EXERCÍCIO 7 – Estrutura composta: tarefas simples
 // ------------------------------------------------------------
@@ -116,6 +111,15 @@ console.log(catalogo)
 // b) Crie um novo array contendo apenas as tarefas que não estão concluídas
 
 // → Seu código aqui:
+console.log("========= EXERCÍCIO 7 =========")
+const tarefas = [
+    {id: 0, titulo: "Varrer casa", concluida: false},
+    {id: 1, titulo: "Limpar banheiro", concluida: false},
+    {id: 2, titulo: "Passar pano na casa", concluida: false}
+]
+console.log(tarefas)
+tarefas[2].concluida = true
+console.log(tarefas)
+const tarefasConcluidas = [tarefas[0], tarefas[1]]
+console.log(tarefasConcluidas)
 
-
-console.log("_______________________________");
