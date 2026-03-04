@@ -72,8 +72,14 @@ console.log(`${aluno.nome}\n ${aluno.notas}`);
 
 // → Seu código aqui:
 console.log("========= EXERCÍCIO 5 =========")
+aluno.responsavel = {
+    nome:"Juréia",
+    parentesco:"Mãe"
+}
+console.log(aluno.responsavel.nome)
+aluno.responsavel.nome = "Fancisca"
+console.log(aluno.responsavel.nome)
 
-console.log("_______________________________");
 
 // ------------------------------------------------------------
 // EXERCÍCIO 6 – Lista de alunos (array de objetos)
@@ -84,6 +90,22 @@ console.log("_______________________________");
 // c) Exiba o nome do segundo aluno da lista.
 
 // → Seu código aqui:
+console.log("========= EXERCÍCIO 6 =========")
 
+const aluno2 = {
+    nome:"Sampaio",
 
-console.log("_______________________________");
+    idade:14,
+
+    curso:"Engenheiro de Software"
+}
+const aluno3 = {
+    nome:"Toguro",
+
+    idade:15,
+
+    curso:"Mecânica Industrial"
+
+}
+const ListadeAlunos = [aluno, aluno2, aluno3]
+console.log(ListadeAlunos[2])
