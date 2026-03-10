@@ -287,13 +287,13 @@ console.table(turma)
 // → Seu código aqui:
 const nomeP1 = readlineSync.question(`Nome do produto:`)
 const categoriaP1 = readlineSync.
-const infoProduto1 = {
-    nome: ,
-    categoria: ,
-    preco: ,
-    quantidade em estoque:
+// const infoProduto1 = {
+//     nome: ,
+//     categoria: ,
+//     preco: ,
+//     quantidade em estoque:
     
-}
+// }
 
 
 console.log("_______________________________");
