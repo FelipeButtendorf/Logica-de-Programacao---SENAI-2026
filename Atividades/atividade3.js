@@ -210,53 +210,53 @@ let readlineSync = require('readline-sync');
 
 // → Seu código aqui:
 //======= Aluno 1 ==========
-const nomeAluno1 = readlineSync.question(`Nome do aluno 1:`)
-const nota1Aluno1 = readlineSync.questionInt(`Nota 1 do aluno:`)
-const nota2Aluno1 = readlineSync.questionInt(`Nota 2 do aluno:`)
-const nota3Aluno1 = readlineSync.questionInt(`Nota 3 do aluno:`)
+// const nomeAluno1 = readlineSync.question(`Nome do aluno 1:`)
+// const nota1Aluno1 = readlineSync.questionInt(`Nota 1 do aluno:`)
+// const nota2Aluno1 = readlineSync.questionInt(`Nota 2 do aluno:`)
+// const nota3Aluno1 = readlineSync.questionInt(`Nota 3 do aluno:`)
 
-//============================
-//======= Aluno 2 ==========
-const nomeAluno2 = readlineSync.question(`Nome do aluno 2:`)
-const nota1Aluno2 = readlineSync.questionInt(`Nota 1 do aluno:`)
-const nota2Aluno2 = readlineSync.questionInt(`Nota 2 do aluno:`)
-const nota3Aluno2 = readlineSync.questionInt(`Nota 3 do aluno:`)
+// //============================
+// //======= Aluno 2 ==========
+// const nomeAluno2 = readlineSync.question(`Nome do aluno 2:`)
+// const nota1Aluno2 = readlineSync.questionInt(`Nota 1 do aluno:`)
+// const nota2Aluno2 = readlineSync.questionInt(`Nota 2 do aluno:`)
+// const nota3Aluno2 = readlineSync.questionInt(`Nota 3 do aluno:`)
 
-//============================
-//======= Aluno 3 ==========
-const nomeAluno3 = readlineSync.question(`Nome do aluno 3:`)
-const nota1Aluno3 = readlineSync.questionInt(`Nota 1 do aluno:`)
-const nota2Aluno3 = readlineSync.questionInt(`Nota 2 do aluno:`)
-const nota3Aluno3 = readlineSync.questionInt(`Nota 3 do aluno:`)
+// //============================
+// //======= Aluno 3 ==========
+// const nomeAluno3 = readlineSync.question(`Nome do aluno 3:`)
+// const nota1Aluno3 = readlineSync.questionInt(`Nota 1 do aluno:`)
+// const nota2Aluno3 = readlineSync.questionInt(`Nota 2 do aluno:`)
+// const nota3Aluno3 = readlineSync.questionInt(`Nota 3 do aluno:`)
 
-//============================
+// //============================
 
-const aluno1 = {
-    nome: nomeAluno1,
-    notas: {
-        nota1: nota1Aluno1,
-        nota2: nota2Aluno1,
-        nota3: nota3Aluno1
-    }
-}
-const aluno2 = {
-    nome: nomeAluno2,
-    notas: {
-        nota1: nota1Aluno2,
-        nota2: nota2Aluno2,
-        nota3: nota3Aluno2
-    }
-}
-const aluno3 = {
-    nome: nomeAluno3,
-    notas: {
-        nota1: nota1Aluno3,
-        nota2: nota2Aluno3,
-        nota3: nota3Aluno3
-    }
-}
-const turma = [aluno1, aluno2, aluno3]
-console.table(turma)
+// const aluno1 = {
+//     nome: nomeAluno1,
+//     notas: {
+//         nota1: nota1Aluno1,
+//         nota2: nota2Aluno1,
+//         nota3: nota3Aluno1
+//     }
+// }
+// const aluno2 = {
+//     nome: nomeAluno2,
+//     notas: {
+//         nota1: nota1Aluno2,
+//         nota2: nota2Aluno2,
+//         nota3: nota3Aluno2
+//     }
+// }
+// const aluno3 = {
+//     nome: nomeAluno3,
+//     notas: {
+//         nota1: nota1Aluno3,
+//         nota2: nota2Aluno3,
+//         nota3: nota3Aluno3
+//     }
+// }
+// const turma = [aluno1, aluno2, aluno3]
+// console.table(turma)
 //console.table({
 //   nome: aluno2.nome , nota: aluno2.notas.nota1 
 //})
@@ -285,18 +285,27 @@ console.table(turma)
 //    "Produto: <nome> | Categoria: <categoria> | Estoque: <quantidade> un".
 
 // → Seu código aqui:
-const nomeP1 = readlineSync.question(`Nome do produto:`)
-const categoriaP1 = readlineSync.
-// const infoProduto1 = {
+// const nomeP1 = readlineSync.question(`Nome do produto:`)
+// const categoriaP1 = readlineSync.question(`Categoria do produto:`)
+// const precoP1 = readlineSync.questionInt(`Preço do produto:`)
+// const estoqueP1 = readlineSync.questionInt(`Quantidade em estoque:`)
+// const disponivelP1 = readlineSync.keyInYN(`Disponivel para venda?`)
+// const produto = {
+//     nome: nomeP1,
+//     categoria: categoriaP1,
+//     preco: precoP1,
+//     estoque: estoqueP1,
+//     disponivel: disponivelP1
+// }
+// console.table(produto)
+// console.log(`Produto: ${nomeP1}, Categoria: ${categoriaP1}, Preço: ${precoP1},\n Estoque: ${estoqueP1}, Disponivel: ${disponivelP1}`)
+// // const infoProduto1 = {
 //     nome: ,
 //     categoria: ,
 //     preco: ,
 //     quantidade em estoque:
     
 // }
-
-
-console.log("_______________________________");
 
 
 // ------------------------------------------------------------
@@ -310,3 +319,19 @@ console.log("_______________________________");
 // c) Exiba a lista com console.table().
 // d) Exiba somente o nome e preço do 2 medicamento.
 // e) Exiba somente o nome e se está em estoque o 1 medicamento.
+
+const Med1 = {
+    nome: nomeMed1 = readlineSync.question(`Nome do medicamento 1:`),
+    preco: precoMed1 = readlineSync.questionInt(`Preco do medicamento 1:`),
+    estoque: estoqueMed1 = readlineSync.keyInYN(`Medicamento 1 em estoque?`)
+}
+const Med2 = {
+    nome: nomeMed2 = readlineSync.question(`Nome do medicamento 2:`),
+    preco: precoMed2 = readlineSync.questionInt(`Preco do medicamento 2:`),
+    estoque: estoqueMed2 = readlineSync.keyInYN(`Medicamento 2 em estoque?`)
+}
+const estoqueFarmacia = [Med1, Med2]
+console.table(estoqueFarmacia)
+console.log(estoqueFarmacia[1].nome, estoqueFarmacia[1].preco)
+console.log(estoqueFarmacia[0].nome, estoqueFarmacia[0].estoque)
+
