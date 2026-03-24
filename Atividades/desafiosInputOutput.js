@@ -112,7 +112,7 @@ let readlineSync = require("readline-sync");
 //   sobremesa: "pudim",
 //   bebidas: {
 //     bebida1: "água",
-//     bebida2: "vinh0"
+//     bebida2: "vinho"
 //   }
 // };
 // console.table(pedido);
@@ -157,20 +157,20 @@ let readlineSync = require("readline-sync");
 // h) Exiba com console.log() o nome do 1º viajante.
 
 // → Seu código aqui:
-const pessoa1 = {
-    nome: readlineSync.question(`Qual o seu nome?`),
-    cidadeFavorita: readlineSync.question(`Qual sua cidade favorita?`),
-}
-const pessoa2 = {
-    nome: readlineSync.question(`Qual o seu nome?`),
-    cidadeFavorita: readlineSync.question(`Qual sua cidade favorita?`),
-}
-const pessoa3 = {
-    nome: readlineSync.question(`Qual o seu nome?`),
-    cidadeFavorita: readlineSync.question(`Qual sua cidade favorita?`),
-}
-console.table(pessoa3);
-const viajantes = [pessoa1, pessoa2, pessoa3]
-console.info(viajantes.length)
-console.log(viajantes[1].cidadeFavorita)
-console.log(viajantes[0].nome)
+// const pessoa1 = {
+//     nome: readlineSync.question(`Qual o seu nome?`),
+//     cidadeFavorita: readlineSync.question(`Qual sua cidade favorita?`),
+// }
+// const pessoa2 = {
+//     nome: readlineSync.question(`Qual o seu nome?`),
+//     cidadeFavorita: readlineSync.question(`Qual sua cidade favorita?`),
+// }
+// const pessoa3 = {
+//     nome: readlineSync.question(`Qual o seu nome?`),
+//     cidadeFavorita: readlineSync.question(`Qual sua cidade favorita?`),
+// }
+// console.table(pessoa3);
+// const viajantes = [pessoa1, pessoa2, pessoa3]
+// console.info(viajantes.length)
+// console.log(viajantes[1].cidadeFavorita)
+// console.log(viajantes[0].nome)
