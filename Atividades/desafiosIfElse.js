@@ -300,15 +300,12 @@ Adicionais (só para os itens 1, 2 e 3):
 // }
 // if(pedido.adicional1) {
 //     precoTotal += precoAd1
-// }else if(pedido.adicional2) {
+// }
+// if(pedido.adicional2) {
 //     precoTotal += precoAd2
 // }
 // if(pedido.numeroPedido === 4) {
 //     precoTotal += pedido4
-// }else if(pedido.adicional1) {
-//     precoTotal += precoAd1
-// }else if(pedido.adicional2) {
-//     precoTotal += precoAd2
 // }
 // let lanche
 // if(numeroPedido === 1) {
@@ -347,4 +344,17 @@ console.log("_______________________________");
 
 // → Seu código aqui:
 
+let cor = lerTeclado.questionInt(`Qual a cor atual do semaforo?
+1 - Verde | 2 - Amarelo | 3 - Vermelho`)
+let cor = lerTeclado.questionInt(`Qual a velocidade atual do veículo(km/h)?`)
+
+
+
+// b) Usando if/else if/else, avalie a situação:
+//    - "verde" e velocidade menor ou igual que 60 → "Tudo certo. Pode seguir."
+//    - "verde" e velocidade maior que 60 → "Atenção: acima do limite no sinal verde."
+//    - "amarelo" → "Reduza a velocidade e prepare-se para parar."
+//    - "vermelho" e velocidade maior que 0 → "PARE! Você avançou o sinal vermelho."
+//    - "vermelho" e velocidade igual a 0 → "Correto. Aguarde o sinal abrir."
+//    - qualquer outra cor → "Cor de semáforo inválida."
 console.log("_______________________________");
