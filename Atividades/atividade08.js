@@ -4,7 +4,7 @@
 // Instruções: resolva cada exercício no espaço indicado.
 // ============================================================
 
-let lerTeclado = require('readline-sync');
+let lerTeclado = require("readline-sync");
 // ------------------------------------------------------------
 // EXERCÍCIO 1 – Switch simples com número
 // ------------------------------------------------------------
@@ -48,7 +48,6 @@ let lerTeclado = require('readline-sync');
 
 console.log("_______________________________");
 
-
 // ------------------------------------------------------------
 // EXERCÍCIO 2 – Switch com string
 // ------------------------------------------------------------
@@ -79,9 +78,7 @@ console.log("_______________________________");
 //         console.log(`Planeta desconhecido.`)
 // }
 
-
 console.log("_______________________________");
-
 
 // ------------------------------------------------------------
 // EXERCÍCIO 3 – Fall-through(cascata) intencional
@@ -111,7 +108,6 @@ console.log("_______________________________");
 
 console.log("_______________________________");
 
-
 // ------------------------------------------------------------
 // EXERCÍCIO 4 – Switch com input (número)
 // ------------------------------------------------------------
@@ -132,10 +128,10 @@ console.log("_______________________________");
 //     case 1:
 //         console.log(`Bom dia! Turno da manhã.`)
 //         break
-//     case 2: 
+//     case 2:
 //         console.log(`Boa tarde! Turno da tarde.`)
 //         break
-//     case 3: 
+//     case 3:
 //         console.log(`Bom dia! Turno da manhã.`)
 //         break
 //     default:
@@ -143,7 +139,6 @@ console.log("_______________________________");
 // }
 
 console.log("_______________________________");
-
 
 // ------------------------------------------------------------
 // EXERCÍCIO 5 – Switch com input (string)
@@ -185,10 +180,7 @@ console.log("_______________________________");
 //    - "primavera" → "Flores, calor e renovação."
 //    - default     → "Estação não reconhecida."
 
-
-
 console.log("_______________________________");
-
 
 // ------------------------------------------------------------
 // EXERCÍCIO 6 – Dias da semana com fall-through
@@ -219,7 +211,6 @@ console.log("_______________________________");
 // }
 
 console.log("_______________________________");
-
 
 // ------------------------------------------------------------
 // EXERCÍCIO 7 – Switch com objeto
@@ -256,7 +247,7 @@ console.log("_______________________________");
 //         produto.descricaoCategoria = "Alimento"
 //         produto.garantia ="Ver validade"
 //         break
-//     case 4: 
+//     case 4:
 //         produto.descricaoCategoria = "Livro"
 //         produto.garantia ="Sem garantia"
 //         break
@@ -268,7 +259,6 @@ console.log("_______________________________");
 // console.table(produto)
 
 console.log("_______________________________");
-
 
 // ------------------------------------------------------------
 // EXERCÍCIO 8 – Conversor de nota para conceito e cor
@@ -333,7 +323,6 @@ console.log("_______________________________");
 
 console.log("_______________________________");
 
-
 // ------------------------------------------------------------
 // EXERCÍCIO 9 – Calculadora com switch
 // ------------------------------------------------------------
@@ -348,38 +337,40 @@ console.log("_______________________________");
 //    No default, exiba: "Operação inválida."
 
 // → Seu código aqui:
-const n1 = lerTeclado.questionFloat(`Digite o primeiro numero:`)
-const n2 = lerTeclado.questionFloat(`Digite o segundo numero:`)
-console.log(`1 – Soma | 2 – Subtração | 3 – Multiplicação | 4 – Divisão | 5 – Resto`)
-const operacao = lerTeclado.questionInt(`Escolha uma das operacoes acima:`)
-switch(operacao) {
-    case 1:
-        conta = n1 + n2
-        console.log(`${n1} + ${n2} = ${conta}`)
-        break
-    case 2:
-        conta = n1 - n2
-        console.log(`${n1} - ${n2} = ${conta}`)
-        break
-    case 3:
-        conta = n1 * n2
-        console.log(`${n1} * ${n2} = ${conta}`)
-        break
-    case 4:
-        if(n2 = 0) {
-            console.log(`Erro: divisão por zero não é permitida.`)
-        }else {
-            conta = n1 * n2
-            console.log(`${n1} * ${n2} = ${conta}`)
-            break
-        }
-}
-
-
-
+// let n1 = lerTeclado.questionFloat(`Digite o primeiro numero:`)
+// let n2 = lerTeclado.questionFloat(`Digite o segundo numero:`)
+// console.log(`1 – Soma | 2 – Subtração | 3 – Multiplicação | 4 – Divisão | 5 – Resto`)
+// let operacao = lerTeclado.questionInt(`Escolha uma das operacoes acima:`)
+// switch(operacao) {
+//     case 1:
+//         conta = n1 + n2
+//         console.log(`${n1} + ${n2} = ${conta}`)
+//         break
+//     case 2:
+//         conta = n1 - n2
+//         console.log(`${n1} - ${n2} = ${conta}`)
+//         break
+//     case 3:
+//         conta = n1 * n2
+//         console.log(`${n1} * ${n2} = ${conta}`)
+//         break
+//     case 4:
+//         if(n2 = 0) {
+//             console.log(`Erro: divisão por zero não é permitida.`)
+//         }else {
+//             conta = n1 / n2
+//             console.log(`${n1} / ${n2} = ${conta}`)
+//             break
+//         }
+//     case 5:
+//         conta = n1 ** n2
+//         console.log(`${n1} ** ${n2} = ${conta}`)
+//         break
+//     default:
+//         console.log(`Numero invalido`)
+// }
 
 console.log("_______________________________");
-
 
 // ------------------------------------------------------------
 // EXERCÍCIO 10 – Menu de loja completo
@@ -400,5 +391,42 @@ console.log("_______________________________");
 //    - default → exiba: "Opção inválida."
 
 // → Seu código aqui:
-
+// let loja = {
+//     nome: "TechShop",
+//     saldo: 0
+// }
+// console.log(`===============================================================
+// 1 – Ver produtos | 2 – Comprar | 3 – Ver carrinho | 4 – Sair
+// ===============================================================`)
+// let opcao = lerTeclado.questionInt(`Selecione uma das opcoes do menu acima.`)
+// const produtos = {
+//     Mouse: {
+//         Categoria: "Eletronico",
+//         Preco: 89.99
+//     },
+//     KitTalheres: {
+//         Categoria: "Utilitarios",
+//         Preco: 45.99
+//     },
+//     Sofa: {
+//         Categoria: "Móveis",
+//         Preco: 699.99
+//     }
+// }
+// switch(opcao) {
+//     case 1:
+//         console.table(produtos)
+//     case 2:
+//         const nomeProduto = lerTeclado.question(`Qual produto voce gostaria de adicionar ao carrinho?`)
+//         const precoProduto = lerTeclado.questionFloat(`Qual o preco do produto que voce adicionou ao carrinho?`)
+//         loja.saldo += precoProduto
+//         console.log(`Produto adicionado ao carrinho`)
+//     case 3:
+//         console.log(`Total do carrinho: ${loja.saldo}`)
+//     case 4:
+//         console.log(`Obrigado por visitar a TechShop!`)
+//         break
+//     default:
+//         console.log(`Opcao invalida.`)
+// }
 console.log("_______________________________");
