@@ -3,7 +3,7 @@
 // ============================================================
 // Instruções: resolva cada desafio no espaço indicado.
 // ============================================================
-let lerTeclado = require('readline-sync');
+let lerTeclado = require("readline-sync");
 
 // ------------------------------------------------------------
 // DESAFIO 1 – Simulador de caixa de restaurante
@@ -136,7 +136,6 @@ let lerTeclado = require('readline-sync');
 
 console.log("_______________________________");
 
-
 // ------------------------------------------------------------
 // DESAFIO 2 – Conversor de unidades
 // ------------------------------------------------------------
@@ -178,43 +177,43 @@ console.log("_______________________________");
 //     unidadeOriginal: "",
 //     resultado: undefined,
 //     unidadeResultado: ""
-// } 
+// }
 // switch(conversao) {
 //     case 1:
 //         conversaoObj.tipo ="Km → Milhas"
 //         conversaoObj.unidadeOriginal = "Km"
 //         conversaoObj.resultado = valor * 0.621371
-//         conversaoObj.unidadeResultado = "Milhas" 
+//         conversaoObj.unidadeResultado = "Milhas"
 //         break
 //     case 2:
 //         conversaoObj.tipo ="Milhas → Km"
 //         conversaoObj.unidadeOriginal = "Milhas"
 //         conversaoObj.resultado = valor * 1.60934
-//         conversaoObj.unidadeResultado = "Km" 
+//         conversaoObj.unidadeResultado = "Km"
 //         break
 //     case 3:
 //         conversaoObj.tipo ="Celsius → Fahrenheit"
 //         conversaoObj.unidadeOriginal = "Celsius"
 //         conversaoObj.resultado = (valor * 9/5) + 32
-//         conversaoObj.unidadeResultado = "Fahrenheit" 
+//         conversaoObj.unidadeResultado = "Fahrenheit"
 //         break
 //     case 4:
 //         conversaoObj.tipo ="Fahrenheit → Celsius"
 //         conversaoObj.unidadeOriginal = "Fahrenheit"
 //         conversaoObj.resultado = (valor - 32) * 5/9
-//         conversaoObj.unidadeResultado = "Celsius" 
+//         conversaoObj.unidadeResultado = "Celsius"
 //         break
 //     case 5:
 //         conversaoObj.tipo ="Kg → Libras"
 //         conversaoObj.unidadeOriginal = "Kg"
 //         conversaoObj.resultado = valor * 2.20462
-//         conversaoObj.unidadeResultado = "Libras" 
+//         conversaoObj.unidadeResultado = "Libras"
 //         break
 //     case 6:
 //         conversaoObj.tipo ="Libras → Kg"
 //         conversaoObj.unidadeOriginal = "Libras"
 //         conversaoObj.resultado = valor / 2.20462
-//         conversaoObj.unidadeResultado = "Kg" 
+//         conversaoObj.unidadeResultado = "Kg"
 //         break
 //     default:
 //         console.log(`Tipo de conversao invalida.`)
@@ -223,9 +222,7 @@ console.log("_______________________________");
 // console.table(conversaoObj)
 // console.log(`${conversaoObj.valorOriginal} ${conversaoObj.unidadeOriginal} = ${Number((conversaoObj.resultado).toFixed(2))} ${conversaoObj.unidadeResultado}`)
 
-
 console.log("_______________________________");
-
 
 // ------------------------------------------------------------
 // DESAFIO 3 – Jogo de pedra, papel e tesoura
@@ -294,7 +291,6 @@ console.log("_______________________________");
 
 console.log("_______________________________");
 
-
 // ------------------------------------------------------------
 // DESAFIO 4 – Sistema de suporte técnico
 // ------------------------------------------------------------
@@ -323,68 +319,87 @@ console.log("_______________________________");
 // b) Exiba todas as mensagens com template literal.
 
 // → Seu código aqui:
-console.log(`1 – Internet | 2 – TV | 3 – Telefone | 4 – Falar com atendente | 0 – Encerrar`)
-const menu = lerTeclado.questionInt(`O voce deseja fazer nesse atendimento?`)
-let submenu1
-let submenu2
-switch(menu) {
-    case 1:
-        console.log(`
-        1 – Sem conexão
-        2 – Conexão lenta
-        3 – Wi-Fi não aparece
-        `)
-        submenu1 = lerTeclado.questionInt(`Insira uma das operacoes acima que voce gostaria de fazer.`)
-        break
-    case 2:
-        console.log(`
-        1 – Sem sinal
-        2 – Imagem ruim
-        3 – Canais sumidos
-        `)
-        submenu2 = lerTeclado.questionInt(`Insira uma das operacoes acima que voce gostaria de fazer.`)
-        break
-    case 3:
-    case 4:
-        console.log(`Por favor, aguarde na linha.`)
-        break
-    case 0: 
-        console.log(`Atendimento encerrado.`)
-        break
-    default:
-        console.log(`Digito invalido.`)
-}
-switch(submenu1) {
-    case 1:
-        console.log(`Entendo. Vamos verificar por que você está offline. Por favor, certifique-se de que os cabos do seu modem estão bem conectados enquanto localizo seu sinal`)
-        break
-    case 2:
-        console.log(`Sinto muito pela lentidão. Vou realizar um teste de estabilidade na sua linha para identificarmos o que está afetando a sua velocidade de navegação.`)
-        break
-    case 3:
-        console.log(`Certo. Se a rede sumiu dos seus dispositivos, pode ser uma configuração do roteador. Vou reiniciar o sinal de transmissão daqui para tentarmos restabelecer a rede.`)
-        break
-    default:
-        console.log(`Digito invalido.`)
-}
-switch(submenu2) {
-    case 1:
-        console.log(`Entendo. Isso geralmente indica um problema de recepção física. Por favor, verifique se o cabo da antena ou do receptor está firme enquanto eu verifico a transmissão na sua região.`)
-        break
-    case 2:
-        console.log(`Lamento pela qualidade da imagem. Pode ser uma interferência no sinal ou ajuste de resolução. Vou enviar um comando de atualização para o seu receptor agora mesmo.`)
-        break
-    case 3:
-        console.log(`Certo. Se alguns canais desapareceram, pode ser necessário atualizar sua grade de programação. Vou sincronizar seu pacote de canais novamente para que eles retornem à lista.`)
-        break
-    default:
-        console.log(`Digito invalido.`)
-}
-
-// Se o usuário escolher 1 (Internet), exiba um sub-menu (questionInt()):
-//   1 – Sem conexão
-//   2 – Conexão lenta
-//   3 – Wi-Fi não aparece
-
+// console.log(
+//   `1 – Internet | 2 – TV | 3 – Telefone | 4 – Falar com atendente | 0 – Encerrar`
+// );
+// const menu = lerTeclado.questionInt(`O voce deseja fazer nesse atendimento?`);
+// let submenu1 = null;
+// let submenu2 = null;
+// switch (menu) {
+//   case 0:
+//     console.log(`Atendimento encerrado.`);
+//     break;
+//   case 1:
+//     console.log(`
+//         1 – Sem conexão
+//         2 – Conexão lenta
+//         3 – Wi-Fi não aparece
+//         `);
+//     submenu1 = lerTeclado.questionInt(
+//       `Insira uma das operacoes acima que voce gostaria de fazer.`
+//     );
+//     break;
+//   case 2:
+//     console.log(`
+//         1 – Sem sinal
+//         2 – Imagem ruim
+//         3 – Canais sumidos
+//         `);
+//     submenu2 = lerTeclado.questionInt(
+//       `Insira uma das operacoes acima que voce gostaria de fazer.`
+//     );
+//     break;
+//   case 3:
+//   case 4:
+//     console.log(`Por favor, aguarde na linha.`);
+//     break;
+//   default:
+//     console.log(`Digito invalido.`);
+// }
+// if (submenu1 !== null) {
+//   switch (submenu1) {
+//     case 1:
+//       console.log(
+//         `Entendo. Vamos verificar por que você está offline. Por favor, certifique-se de que os cabos do seu modem estão bem conectados enquanto localizo seu sinal`
+//       );
+//       break;
+//     case 2:
+//       console.log(
+//         `Sinto muito pela lentidão. Vou realizar um teste de estabilidade na sua linha para identificarmos o que está afetando a sua velocidade de navegação.`
+//       );
+//       break;
+//     case 3:
+//       console.log(
+//         `Certo. Se a rede sumiu dos seus dispositivos, pode ser uma configuração do roteador. Vou reiniciar o sinal de transmissão daqui para tentarmos restabelecer a rede.`
+//       );
+//       break;
+//     default:
+//       if (menu === 1) {
+//         console.log(`Digito invalido.`);
+//       }
+//   }
+// } else {
+//   switch (submenu2) {
+//     case 1:
+//       console.log(
+//         `Entendo. Isso geralmente indica um problema de recepção física. Por favor, verifique se o cabo da antena ou do receptor está firme enquanto eu verifico a transmissão na sua região.`
+//       );
+//       break;
+//     case 2:
+//       console.log(
+//         `Lamento pela qualidade da imagem. Pode ser uma interferência no sinal ou ajuste de resolução. Vou enviar um comando de atualização para o seu receptor agora mesmo.`
+//       );
+//       break;
+//     case 3:
+//       console.log(
+//         `Certo. Se alguns canais desapareceram, pode ser necessário atualizar sua grade de programação. Vou sincronizar seu pacote de canais novamente para que eles retornem à lista.`
+//       );
+//       break;
+//     default:
+//       if (menu === 2) {
+//         console.log(`Digito invalido.`);
+//       }
+//   }
+// }
 
 console.log("_______________________________");
