@@ -52,9 +52,9 @@ console.log(`
              Olá ${jogador.nome}, seja bem vindo ao Show do Milhão!.
 ============================================================================
                       DESCRICAO DO JOGO:
- Esse é um  jogo no qual voce recebera 5 perguntas de temas gerais,
+ Esse é um  jogo no qual você receberá 5 perguntas de temas gerais,
 cada pergunta contendo 4 alternativas. Seu objetivo é acertar o máximo de
-perguntas possíveis para acumular pontos. Ao final do quiz voce podera comprar
+perguntas possíveis para acumular pontos. Ao final do quiz você poderá comprar
 alguns items com os pontos que voce acumulou na jogada.
 ============================================================================
                        REGRAS BÁSICAS:
@@ -72,11 +72,33 @@ sua resposta.
 ============================================================================
 `)
 jogador.pontos = 0
+console.log(`Agora que voce ja conheco o jogo e as suas regras ja podemos comecar.)
+========================================
+1 - Sim | 2 - Nao, deixa pra outra hora.
+========================================
+`)
+const start = lerTeclado.questionInt(`Podemos comecar o quiz?`)
+switch(start) {
+    case 2:
+        console.log(`Tudo bem, `)
+}
 console.log(`
 ============================================================================
 Pergunta 1.(FILMES E SERIES)
 ============================================================================
 `)
+
+
+
+
+
+
+
+
+
+
+
+}
 // Para cada uma das 5 perguntas, repita este padrão:
 //   1. Exiba o enunciado e as 4 alternativas com console.log().
 //   2. Leia a resposta do jogador (questionInt()).
