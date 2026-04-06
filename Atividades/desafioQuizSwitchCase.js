@@ -77,10 +77,18 @@ console.log(`Agora que voce ja conheco o jogo e as suas regras ja podemos comeca
 1 - Sim | 2 - Nao, deixa pra outra hora.
 ========================================
 `)
-const start = lerTeclado.questionInt(`Podemos comecar o quiz?`)
+const start = lerTeclado.questionInt(`Podemos iniciar o quiz?`)
 switch(start) {
+    case 1:
+    console.log(`Tudo bem, vamos começar o nosso quiz.
+    Aqui vai a primeira pergunta.`)
+    break
     case 2:
-        console.log(`Tudo bem, `)
+        console.log(`Okay, deixa pra outra hora então.`)
+        process.exit()
+        break
+    default:
+        console.log(`O número que você digitou não é uma opção válida.`)
 }
 console.log(`
 ============================================================================
