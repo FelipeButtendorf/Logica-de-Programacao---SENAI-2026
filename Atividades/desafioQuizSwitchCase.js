@@ -42,7 +42,13 @@ let lerTeclado = require("readline-sync");
 // ============================================================
 
 // → Seu código aqui:
-
+let pontos5 = "Perfeito! Você é um expert!"
+let pontos3 = "Bom trabalho, mas pode melhorar."
+let pontos2 = "Nheee!"
+let pontos1 = "VIX, tente novamente!"
+const textPontos = [
+    pontos5, pontos3, pontos2, pontos1 
+]
 let nome = lerTeclado.question(`Para comecar precisamos saber qual o seu nome(ou apelido)?`)
 let jogador = {
     nome
@@ -80,38 +86,45 @@ console.log(`Agora que voce ja conheco o jogo e as suas regras ja podemos comeca
 const start = lerTeclado.questionInt(`Podemos iniciar o quiz?`)
 switch(start) {
     case 1:
-    console.log(`Tudo bem, vamos começar o nosso quiz.
-    Aqui vai a primeira pergunta.`)
-    break
+        console.log(`Tudo bem, vamos começar o nosso quiz.
+        Aqui vai a primeira pergunta.`)
+        break
     case 2:
         console.log(`Okay, deixa pra outra hora então.`)
         process.exit()
         break
     default:
         console.log(`O número que você digitou não é uma opção válida.`)
+        process.exit()
 }
-console.log(`
+console.log(`============================================================================
+Perfeito! Aqui vai a primeira pergunta do quiz:
 ============================================================================
 Pergunta 1.(FILMES E SERIES)
 ============================================================================
+Qual é o diretor do filme Titanic(1997)?
+
+1) Steven Spielberg
+2) James Cameron
+3) Ridley Scott
+4) Peter Jackson
+============================================================================
 `)
-
-
-
-
-
-
-
-
-
-
-
+let resp1 = lerTeclado.questioInt(`Qual das alternativas acima é a correta?
+============================================================================`)
+switch(resp1) {
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    console.log(``)
 }
-// Para cada uma das 5 perguntas, repita este padrão:
-//   1. Exiba o enunciado e as 4 alternativas com console.log().
-//   2. Leia a resposta do jogador (questionInt()).
-//   3. Use switch/case para avaliar a resposta:
-//      - No case correto: exiba "Correto!" e some 1 ponto a "pontos".
-//      - Nos demais cases: exiba "Errado! A resposta certa era a opção X."
-//      - No default: exiba "Opção inválida, nenhum ponto atribuído."
 
+//   d) Exiba o total: "Você fez X de 5 pontos."
+//   e) Use switch/case (ou if/else) para exibir um resultado final com frases como as abaixo
+//      Dica: você pode modificar o retorno para se adequar ao tema escolhido
+//      - 5 pontos        → "Perfeito! Você é um expert!"
+//      - 4 pontos        → "Muito bem! Quase lá!"
+//      - 3 pontos        → "Bom trabalho, mas pode melhorar."
+//      - 1 ou 2 pontos   → "Nheee!"
+//      - 0 pontos        → "VIX, tente novamente!"
