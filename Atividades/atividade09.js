@@ -18,7 +18,6 @@ let lerTeclado = require("readline-sync");
 
 console.log("_______________________________");
 
-
 // ------------------------------------------------------------
 // EXERCÍCIO 2 – Contagem decrescente
 // ------------------------------------------------------------
@@ -32,9 +31,7 @@ console.log("_______________________________");
 // }
 // console.log("Lançamento! 🚀")
 
-
 console.log("_______________________________");
-
 
 // ------------------------------------------------------------
 // EXERCÍCIO 3 – Números pares
@@ -51,9 +48,7 @@ console.log("_______________________________");
 //     }
 // console.log(`Contador : ${contador}`)
 
-
 console.log("_______________________________");
-
 
 // ------------------------------------------------------------
 // EXERCÍCIO 4 – Tabuada
@@ -72,9 +67,7 @@ console.log("_______________________________");
 //     console.log(`${tabuada} x ${num} = ${resultado}`)
 // }
 
-
 console.log("_______________________________");
-
 
 // ------------------------------------------------------------
 // EXERCÍCIO 5 – Soma acumulada
@@ -96,7 +89,6 @@ console.log("_______________________________");
 
 console.log("_______________________________");
 
-
 // ------------------------------------------------------------
 // EXERCÍCIO 6 – Fatorial
 // ------------------------------------------------------------
@@ -115,26 +107,30 @@ console.log("_______________________________");
 // console.log(`${N}! = ${resultado}`)
 console.log("_______________________________");
 
-
 // ------------------------------------------------------------
 // EXERCÍCIO 7 – Percorrendo um array
 // ------------------------------------------------------------
 // a) Utilizando o array:
-    const cidades = ["São Paulo", "Rio de Janeiro", "Curitiba", "Salvador", "Fortaleza"];
+const cidades = [
+  "São Paulo",
+  "Rio de Janeiro",
+  "Curitiba",
+  "Salvador",
+  "Fortaleza"
+];
 // b) Utilizando de um for, exiba cada cidade com seu índice no formato:
 //    "[<indice>] - <Cidade>"
 // c) Ao final, exiba: "Total de cidades: <quantidade>"
 
 // → Seu código aqui:
-let i = null
-let contador = 0
-for( i = 0; i < cidades.length ; i++) {
-    console.log(`[${i}] - ${cidades[i]}`)
-    contador++
-}
-console.log(`Total de cidades: ${contador}`)
+// let i = null
+// let contador = 0
+// for( i = 0; i < cidades.length ; i++) {
+//     console.log(`[${i}] - ${cidades[i]}`)
+//     contador++
+// }
+// console.log(`Total de cidades: ${contador}`)
 console.log("_______________________________");
-
 
 // ------------------------------------------------------------
 // EXERCÍCIO 8 – Maior e menor valor
@@ -147,32 +143,52 @@ console.log("_______________________________");
 //    "Menor temperatura: <menor>°C"
 
 // → Seu código aqui:
-
-
+// const temperaturas = [28, 15, 32, 9, 21, 37, 14, 25]
+// let maior = temperaturas[0]
+// for(let i = 1; i < temperaturas.length ; i++) {
+//     if(temperaturas[i] > maior) {
+//         maior = temperaturas[i]
+//     }
+// }
+// let menor = temperaturas[0]
+// for(let i = 1; i < temperaturas.length ; i++) {
+//     if(temperaturas[i] < menor) {
+//         menor = temperaturas[i]
+//     }
+// }
+// console.log(`"Maior temperatura: ${maior}°C
+// Menor temperatura: ${menor}°C`)
 console.log("_______________________________");
-
 
 // ------------------------------------------------------------
 // EXERCÍCIO 9 – Contando com condição
 // ------------------------------------------------------------
 // a) Utilizando do array:
-    const idades = [12, 25, 17, 34, 15, 42, 16, 29, 8, 19];
+const idades = [12, 25, 17, 34, 15, 42, 16, 29, 8, 19];
 // b) Usando um for, conte:
 //    - Quantas pessoas são menores de idade (< 18)
 //    - Quantas são maiores de idade (>= 18)
 // c) Exiba os dois totais.
 
 // → Seu código aqui:
-
-
+// let menores = [null]
+// let maiores = [null]
+// for(let i = 0; i < idades.length; i++){
+//     if(idades[i] >= 18) {
+//         maiores.push(idades[i])
+//     }else {
+//         menores.push(idades[i])
+//     }
+// }
+// console.log(`Menores de idade: ${menores}
+// Maiores de idade; ${maiores}`)
 console.log("_______________________________");
-
 
 // ------------------------------------------------------------
 // EXERCÍCIO 10 – Média com array
 // ------------------------------------------------------------
 // a) Utilizando do array:
-    const salarios = [1800, 3200, 950, 4500, 2100, 1500, 7800, 2900];
+const salarios = [1800, 3200, 950, 4500, 2100, 1500, 7800, 2900];
 // b) Usando um for, calcule a média salarial.
 // c) Exiba a média no formato: "Média salarial: R$ <media>"
 // d) Usando outro for, exiba cada salário e se está acima ou abaixo da média:
@@ -180,10 +196,25 @@ console.log("_______________________________");
 //    "R$ 3200,00 – Acima da média"
 
 // → Seu código aqui:
-
+// let total = 0
+// for(let i = 0; i < salarios.length; i++) {
+//     total += salarios[i]
+// }
+// const media = total / salarios.length
+// console.log(`Média salárial: ${Number(media)}`)
+// let abaixo = [null]
+// let acima = [null]
+// for(let i = 0; i < salarios.length; i++) {
+//     if(salarios[i] < 1800) {
+//         abaixo.push(salarios[i])
+//     }if(salarios[i] > 3200) {
+//         acima.push(salarios[i])
+//     }
+// }
+// console.log(`Acima da média: ${acima}
+// Abaixo da média: ${abaixo}`)
 
 console.log("_______________________________");
-
 
 // ------------------------------------------------------------
 // EXERCÍCIO 11 – Ranking de notas
@@ -203,10 +234,34 @@ console.log("_______________________________");
 // g) Exiba o array 'turma' com console.table().
 
 // → Seu código aqui:
-
+// const qntAlunos = 3
+// let turma = []
+// let somaNotas = 0
+// for(let i = 0; i < 3; i++) {
+//     const nomeAluno = lerTeclado.question(`Nome do aluno ${i + 1}: `)
+//     const nota =  lerTeclado.questionFloat(`Nota de ${nomeAluno}: `)
+//     somaNotas += nota
+//     turma.push( {
+//         nome: nomeAluno,
+//         notas: nota
+//         }
+//     )
+// }
+// let media= somaNotas / qntAlunos
+// for(let i = 0; i < turma.length; i++) {
+//     if(turma[i].notas >= 7) {
+//         turma[i].situacao = "Aprovado"
+//     }else if(turma[i].notas >= 5 && turma[i].notas < 7) {
+//         turma[i].situacao = "Recuperação"
+//     }else if(turma[i].notas < 5) {
+//         turma[i].situacao = "Reprovado"
+//     }
+//     console.log(`${turma[i].nome}: ${turma[i].notas} - ${turma[i].situacao}`)
+// }
+// console.log(`Média da turma: ${Number(media.toFixed(2))}`)
+// console.table(turma)
 
 console.log("_______________________________");
-
 
 // ------------------------------------------------------------
 // EXERCÍCIO 12 – Coletando dados com for e input
@@ -222,6 +277,41 @@ console.log("_______________________________");
 // f) Exiba o array com console.table().
 
 // → Seu código aqui:
-
+// let qntProdutos = lerTeclado.questionInt(`Quantos produtos voce gostaria de cadastrar?
+// Digite sua resposta:`)
+// let estoque = []
+// for(let i = 0; i < qntProdutos; i++) {
+//     const nome = lerTeclado.question(`Nome do produto ${i + 1}:`)
+//     const preco = lerTeclado.questionFloat(`Preco do produto ${nome}:`)
+//     estoque.push( {
+//         nome: nome,
+//         preco: preco
+//     }
+//     )
+// }
+// console.log(`============= PRODUTOS EM ESTOQUE =============`)
+// for(let i = 0; i < qntProdutos; i++) {
+//     console.log(`${estoque[i].nome}: R$ ${estoque[i].preco}`)
+// }
+// console.log(`===============================================`)
+// let caroNum = estoque[0].preco
+// let baratoNum = estoque[0].preco
+// let caroText = estoque[0].nome
+// let baratoText = estoque[0].nome
+// for(let i = 1; i < qntProdutos; i++) {
+//     if(caroNum < estoque[i].preco) {
+//         caroNum = estoque[i].preco
+//         caroText = estoque[i].nome
+//     }
+// }
+// for(let i = 1; i < qntProdutos; i++) {
+//     if(baratoNum > estoque[i].preco) {
+//         baratoNum = estoque[i].preco
+//         baratoText = estoque[i].nome
+//     }
+// }
+// console.log(`Produto mais caro: ${caroText}
+// Produto mais barato: ${baratoText}`)
+// console.table(estoque)
 
 console.log("_______________________________");
