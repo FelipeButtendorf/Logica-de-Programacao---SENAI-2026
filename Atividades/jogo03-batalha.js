@@ -81,16 +81,30 @@ const inimigos = [
 // INÍCIO DO JOGO
 // ============================================================
 
-console.log("╔══════════════════════════╗");
-console.log("║   BEM VINDO(A) AO EBRP   ║");
-console.log("╚══════════════════════════╝");
 
 // Peça o nome do herói e exiba as regras do jogo resumidamente.
 // → Seu código aqui:
+
 let lerTeclado = require("readline-sync");
 
-heroi.nome = lerTeclado.question(`Como voce quer ser chamado?
-  Digite aqui:`);
+console.log("_______________________________");
+
+// ============================================================
+// LOOP DE BATALHAS
+// ============================================================
+
+// → Seu código aqui:
+
+console.log("╔══════════════════════════╗");
+console.log("║   BEM VINDO(A) AO EBRP   ║"); 
+console.log("╚══════════════════════════╝");
+
+heroi.nome = lerTeclado.question(`Como voce quer ser chamado? 
+  Digite aqui:`); // NOME DO HERÓI
+
+console.log("╔════════════════════════════╗");
+console.log("║    VAMOS AS BATATALHAS!    ║");
+console.log("╚════════════════════════════╝");
 
 console.log(`=========== COMO FUNCIONA ============`);
 console.log(`Seu objetivo é fazer seu heroi batalhar`);
@@ -99,33 +113,29 @@ console.log(`suindo opcao de atacar, defender e se `);
 console.log(`curar, assim como seu inimigo tambem tem.`);
 console.log(`Se seu personagem morrer voce perde, ja`);
 console.log(`se ganhar, leva tudo.`);
-console.log(`======================================`);
+console.log(`======================================`);// REGRAS
 
-console.log("_______________________________");
+console.log(`Seu primeiro inimigo é o ${inimigos[0].nome}. Ele possuiu ${inimigos[0].hp} pontos de vida`
+);// ESTÁSTICAS DO INIMIGO
 
-// ============================================================
-// LOOP DE BATALHAS
-// ============================================================
-
-console.log("╔════════════════════════════╗");
-console.log("║    VAMOS AS BATATALHAS!    ║");
-console.log("╚════════════════════════════╝");
-
-// → Seu código aqui:
-
-console.log(
-  `Seu primeiro inimigo é o ${inimigos[0].nome}. Ele possuiu ${inimigos[0].hp} pontos de vida`
-);
 console.log(`Suas estatísticas atuais são:`);
-console.table(heroi);
+console.table(heroi);// ESTÁTISTICAS DO HERÓI
+
 for(let i = inimigos.length ; i != 0 ; i --) {
-    let decisaoI = Math.floor(Math.random() * (10 + 1))
-    if(decisaoI <=1) {// CURAR
-    
+    let decisao = lerTeclado.questionInt(`O que voce quer fazer?
+    1 - Atacar | 2 - Defender | 3 - Curar-se `);
+    let decisaoInimigo = Math.floor(Math.random() * (10 + 1))
+    let danoHeroi = Math.floor(Math.random() * (heroi.danoMax + heroi.danoMin))
+    let danoInimigo = Math.floor(Math.random() * (inimigos[0].danoMax + inimigos[0].danoMin))
+    if(decisaoInimigo <=1) {// CURAR
+     inimigos[0].hp += Math.floor(Math.random() * (20 + 10))
+     if(inimigos[0].hp > 100) {
+      inimigos[0].hp = 100       
+     }
     }else if(decisaoI <=3) {// DEFENDER
-
+      danoHeroi = danoHeroi / 4
     }else {// ATACAR
-
+      heroi.hp -= danoInimigo
     }
 
     let decisao = lerTeclado.questionInt(`O que voce quer fazer?
