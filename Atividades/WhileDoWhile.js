@@ -182,8 +182,22 @@ console.log("_______________________________");
 //    "<nome> acertou após <tentativas> tentativa(s)! O número era <secreto>."
 
 // → Seu código aqui:
-let secreto = Math.floor(Math.random() * (10 + 1))
-let nome = lerTeclado.question(`Nome do jogador:`)
+// const secreto = Math.floor(Math.random() * (50 + 1))
+// const nome = lerTeclado.question(`Nome do jogador:`)
+// let palpite = null
+// let tentativas = 0
+// while(palpite !== secreto) {
+//     palpite = lerTeclado.questionInt(`De um palpite de um númro entre 1 e 50.
+//     Digite aqui:`)
+//     if(palpite > secreto) {
+//         console.log("Muito alto! Tente menor.")
+//     }else if(palpite < secreto) {
+//         console.log("Muito baixo! Tente maior.")    
+//     }
+//     tentativas ++
+// }
+// console.log(`${nome} acertou após ${tentativas} tentativa(s)! O número era ${secreto}.`)
+
 
 console.log("_______________________________");
 
@@ -196,6 +210,15 @@ console.log("_______________________________");
 //    Formato para exibição: "<número> x <i> = <resultado>"
 
 // → Seu código aqui:
+// let numInt = lerTeclado.questionInt(`Me dê um número inteiro.
+// Digite aqui:`)
+// let multip = 1
+// let resultado = null
+// while((multip - 1) !== 10) {
+//     resultado = numInt * multip
+//     console.log(`${numInt} x ${multip} = ${resultado}`)
+//     multip ++
+// }
 
 
 console.log("_______________________________");
@@ -213,6 +236,21 @@ console.log("_______________________________");
 // c) Ao final, exiba o saldo restante e o total de rodadas.
 
 // → Seu código aqui:
+// let saldo = 1000
+// let rodada = 0
+// while(saldo > 0 && rodada < 10) {
+//     let saqueAleatorio =  Math.floor(Math.random() * (200 + 50))
+//     rodada ++
+//     if (saqueAleatorio > saldo) {
+//         console.log("Saldo insuficiente. Fim!")
+//         process.exit()
+//     }else {
+//         saldo -= saqueAleatorio
+//         console.log(`Rodada ${rodada}: sacou R$ ${saqueAleatorio} | Novo saldo: R$ ${saldo}
+//         `)
+//     }
+// }
+// console.log(`Saldo restante: ${novoSaldo} | Total de rodadas = ${rodada}`)
 
 
 console.log("_______________________________");
@@ -231,6 +269,17 @@ console.log("_______________________________");
 // d) Exiba: "Total de contatos cadastrados: <qtd>"
 
 // → Seu código aqui:
+// let contatos = []
+// let adicionar = null
+// do {
+//     let nome = lerTeclado.question(`Nome: `)
+//     let telefone = lerTeclado.question(`Telefone: `)
+//     contatos.push({nome, telefone})
+//     adicionar = lerTeclado.keyInYN(`Adicionar mais contatos?
+//     Digite aqui: `)
+// }while (adicionar != false)
+// console.table(contatos)
+// console.log(`Total de contatos cadastrados: ${contatos.length}`)
 
 
 console.log("_______________________________");

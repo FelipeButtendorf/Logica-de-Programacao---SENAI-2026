@@ -81,7 +81,6 @@ const inimigos = [
 // INÍCIO DO JOGO
 // ============================================================
 
-
 // Peça o nome do herói e exiba as regras do jogo resumidamente.
 // → Seu código aqui:
 
@@ -96,7 +95,7 @@ console.log("_______________________________");
 // → Seu código aqui:
 
 console.log("╔══════════════════════════╗");
-console.log("║   BEM VINDO(A) AO EBRP   ║"); 
+console.log("║   BEM VINDO(A) AO EBRP   ║");
 console.log("╚══════════════════════════╝");
 
 heroi.nome = lerTeclado.question(`Como voce quer ser chamado? 
@@ -113,45 +112,67 @@ console.log(`suindo opcao de atacar, defender e se `);
 console.log(`curar, assim como seu inimigo tambem tem.`);
 console.log(`Se seu personagem morrer voce perde, ja`);
 console.log(`se ganhar, leva tudo.`);
-console.log(`======================================`);// REGRAS
+console.log(`======================================`); // REGRAS
 
-console.log(`Seu primeiro inimigo é o ${inimigos[0].nome}. Ele possuiu ${inimigos[0].hp} pontos de vida`
-);// ESTÁSTICAS DO INIMIGO
-
-console.log(`Suas estatísticas atuais são:`);
-console.table(heroi);// ESTÁTISTICAS DO HERÓI
-
-for(let i = inimigos.length ; i != 0 ; i --) {
-    let decisao = lerTeclado.questionInt(`O que voce quer fazer?
-    1 - Atacar | 2 - Defender | 3 - Curar-se `);
-    let decisaoInimigo = Math.floor(Math.random() * (10 + 1))
-    let danoHeroi = Math.floor(Math.random() * (heroi.danoMax + heroi.danoMin))
-    let danoInimigo = Math.floor(Math.random() * (inimigos[0].danoMax + inimigos[0].danoMin))
-    if(decisaoInimigo <=1) {// CURAR
-     inimigos[0].hp += Math.floor(Math.random() * (20 + 10))
-     if(inimigos[0].hp > 100) {
-      inimigos[0].hp = 100       
-     }
-    }else if(decisaoI <=3) {// DEFENDER
-      danoHeroi = danoHeroi / 4
-    }else {// ATACAR
-      heroi.hp -= danoInimigo
+console.log(`Suas estatísticas são:`);
+console.table(heroi); // ESTATÍSTICAS DO HERÓI
+let decisao = null;
+for (let i = inimigos.length; i != 0; i--) {
+  console.log(
+    `Seu inimigo é o ${inimigos[0].nome}. Ele possuiu ${inimigos[0].hp} pontos de vida`
+  ); // ESTÁSTICAS DO INIMIGO
+  for (let i = 1; inimigos[0].hp > 0; i++)
+    decisao = lerTeclado.questionInt(`O que voce quer fazer?
+    1 - Atacar | 2 - Defender | 3 - Curar-se 
+    Digite aqui: `);
+  let decisaoInimigo = Math.floor(Math.random() * (10 + 1));
+  let danoHeroi = Math.floor(Math.random() * (heroi.danoMax + heroi.danoMin));
+  let danoInimigo = Math.floor(
+    Math.random() * (inimigos[0].danoMax + inimigos[0].danoMin)
+  );
+  if (decisaoInimigo <= 1) {
+    // CURAR
+    if(decisao === 1) {
+      inimigos[0].hp -= danoHeroi
     }
-
-    let decisao = lerTeclado.questionInt(`O que voce quer fazer?
-  1 - Atacar | 2 - Defender | 3 - Curar-se `);
-switch (decisao) {
-  case 1:
-    inimigos[0].hp -= Math.floor(Math.random() * (heroi.danoMax + heroi.danoMin))   
-    break;
-  case 2:
-    break;
-
-  case 3:
-    break;
-  default:
-}
-
+    inimigos[0].hp += Math.floor(Math.random() * (20 + 10));
+    if (inimigos[0].hp > 100) {
+      inimigos[0].hp = 100;
+    }
+    console.log(`Seu inimigo se curou.`)
+  } else if (decisaoInimigo <= 3) {
+    // DEFENDER
+    danoHeroi = Math.floor(danoHeroi / 4);
+    console.log(`Seu inimigo se defendeu.`) 
+  } else {
+    // ATACAR
+    if (decisao === 2) {
+      heroi.hp -= Math.floor(danoInimigo / 4);
+    }else {
+      heroi.hp -= danoInimigo;
+    }
+    console.log(`Seu inimigo atacou.`)
+  }
+  switch (decisao) {
+    case 1:
+      inimigos[0].hp -= danoHeroi;
+      console.log(`Voce atacou seu inimigo.`)
+      break;
+    case 2:
+      console.log(`Voce defendeu o ataque do inimigo.`)
+      break;
+    case 3:
+      Heroi.hp += Math.floor(Math.random() * (20 + 10));
+      if (Heroi.hp > 100) {
+        Heroi.hp = 100;
+      }
+      console.log(`Voce se curou.`)
+    default:
+  }
+  console.log(`========= STATUS ==========`);
+  console.log(`HP DO HEROI: ${heroi.hp}`);
+  console.log(`HP DO INIMIGO: ${inimigos[0].hp}`);
+  console.log(`===========================`);
 }
 
 console.log("_______________________________");
