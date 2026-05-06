@@ -81,63 +81,33 @@ console.log("_______________________________");
 
 // → Seu código aqui:
 let ganhador = []
-let posicao1 = null
-let posicao2 = null
-let posicao3 = null
-let posicao4 = null
+let posicao = null
 let rodada = 1
-while(ganhador.length < 0) {
-console.log( `════ Rodada ${rodada} ════`)
+    while(ganhador.length <= 0) {
+    console.log( `════ Rodada ${rodada} ════`)
+        for(let i = 0; i < 4; i ++) {
+        
+        numero = Math.floor(Math.random() * (4 + 1));// CAVALO 1
+        posicao += numero
+            if(posicao > TAMANHO_PISTA){
+            posicao = 30
+            }
 
-posicao1 = Math.floor(Math.random() * (4 + 1));// CAVALO 1
-posicao1 += cavalos[0].posicao
-if(posicao1 > TAMANHO_PISTA){
-    posicao1 = 30
-}
+        console.log(`[${cavalos[i].numero}] ${cavalos[i].nome}     ${"█".repeat(posicao)}${"░".repeat(TAMANHO_PISTA - posicao)} ${posicao}/30`)
 
-posicao2 = Math.floor(Math.random() * (4 + 1));// CAVALO 2
-posicao2 += cavalos[1].posicao
-if(posicao2 > TAMANHO_PISTA){
-    posicao1 = 30
-}
-
-posicao3 = Math.floor(Math.random() * (4 + 1));// CAVALO 3
-posicao3 += cavalos[2].posicao
-if(posicao3 > TAMANHO_PISTA){
-    posicao1 = 30
-}
-
-posicao4 = Math.floor(Math.random() * (4 + 1));// CAVALO 4
-posicao4 += cavalos[3].posicao
-if(posicao4 > TAMANHO_PISTA){
-    posicao1 = 30
-}
-
-console.log(`[${cavalos[0].numero}] ${cavalos[0].nome}     ${"█".repeat(posicao)}${"░".repeat(TAMANHO_PISTA - posicao)} ${posicao1}/30`)
-console.log(`[${cavalos[1].numero}] ${cavalos[1].nome}     ${"█".repeat(posicao)}${"░".repeat(TAMANHO_PISTA - posicao)} ${posicao2}/30`)
-console.log(`[${cavalos[2].numero}] ${cavalos[2].nome}     ${"█".repeat(posicao)}${"░".repeat(TAMANHO_PISTA - posicao)} ${posicao3}/30`)
-console.log(`[${cavalos[3].numero}] ${cavalos[3].nome}     ${"█".repeat(posicao)}${"░".repeat(TAMANHO_PISTA - posicao)} ${posicao4}/30`)
-
-if(posicao1 >= TAMANHO_PISTA){// VERIFICANDO POSSIVEL GANHADOR ( CAVALO 1)
-    ganhador.push(cavalos[0].nome)
-}
-if(posicao2 >= TAMANHO_PISTA){// VERIFICANDO POSSIVEL GANHADOR ( CAVALO 2)
-    ganhador.push(cavalos[1].nome)
-}
-if(posicao3 >= TAMANHO_PISTA){// VERIFICANDO POSSIVEL GANHADOR ( CAVALO 3)
-    ganhador.push(cavalos[2].nome)
-}
-if(posicao4 >= TAMANHO_PISTA){// VERIFICANDO POSSIVEL GANHADOR ( CAVALO 4)
-    ganhador.push(cavalos[3].nome)
-}
-rodada ++
-}
+            if(posicao >= TAMANHO_PISTA){// VERIFICANDO POSSIVEL GANHADOR ( CAVALO 1)
+            ganhador.push(cavalos[i].nome)
+            }
+        }
+    rodada ++ 
+    }
 
 if(ganhador.length === 1) {// VERIFICAR SE HÁ APENAS UM GANHADOR
     console.log(`O cavalao ganhador é o ${ganhador}!`)
 }else{// QUANDO HÁ MAIS DE UM GANHADOR
     console.log(`Os cavalos ganhadores são: ${ganhador}.`)
 }
+
 if(ganhador.includes(`${cavalos[escolha - 1].nome}`)) {
     console.log(`Parabéns! O cavalo que voce escolheu ganhou!`)
 }else {
