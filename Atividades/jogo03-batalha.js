@@ -28,7 +28,7 @@
 //   - Exiba o resultado e a vida atual do herói.
 //   - Se o herói vencer as 3 batalhas, exiba o resultado final.
 //
-// Após o desenvolvimento das regras base acima descritas,
+// Após o desenvolvimento das regras base acima descritas, 
 //   sinta-se livre para implementar melhorias e adicionar novos recursos.
 //   - Exemplos de mecânicas adicionais:
 //      - 2 tipos de armas para o herói, uma possuindo maior dano, mas possui menor precisão e a outra o inverso.
@@ -38,7 +38,7 @@
 //      - Eventos aleatórios que podem ocorrer durante as batalhas, como a intervenção de aliados ou armadilhas no campo de batalha.
 //
 // ============================================================
-
+let lerTeclado = require("readline-sync");
 // ============================================================
 // HERÓI (não altere a estrutura — altere os valores se quiser)
 // ============================================================
@@ -57,34 +57,50 @@ const heroi = {
 // ============================================================
 
 const inimigos = [
-  {
+  { 
     nome: "Goblin",
+    hpTotal: 30 ,
     hp: 30,
     danoMin: 6,
     danoMax: 12
   },
-  {
+  { 
     nome: "Orc Guerreiro",
+    hpTotal: 50 ,
     hp: 50,
     danoMin: 10,
     danoMax: 18
   },
-  {
+  { 
     nome: "Dragão Negro",
+    hpTotal: 80 ,
     hp: 80,
     danoMin: 15,
     danoMax: 25
   }
 ];
 
+
 // ============================================================
 // INÍCIO DO JOGO
 // ============================================================
 
+console.log("╔══════════════════════════╗");
+console.log("║   BEM VINDO(A) AO ....   ║");
+console.log("╚══════════════════════════╝");
+
 // Peça o nome do herói e exiba as regras do jogo resumidamente.
 // → Seu código aqui:
 
-let lerTeclado = require("readline-sync");
+do { // nome do herói
+  heroi.nome = lerTeclado.question(`Como voce deseja ser chamado?
+  Digite aqui: `)
+}while( heroi.nome === "" )
+
+console.log("╔════════════╗");
+console.log("║   REGRAS   ║");
+console.log("╚════════════╝");
+console.log(" O seu heroi possuiu o objetivo de derrotar todos os 3 inimigos, sendo eles : Goblin, Orc Negro e Dragão Negro.\nA cada rodada voce e se inimigo tomam uma ação ao mesmo tempo, podendo atacar, defender e curar(uma vez por batalha).")
 
 console.log("_______________________________");
 
@@ -92,88 +108,104 @@ console.log("_______________________________");
 // LOOP DE BATALHAS
 // ============================================================
 
-// → Seu código aqui:
-
-console.log("╔══════════════════════════╗");
-console.log("║   BEM VINDO(A) AO EBRP   ║");
-console.log("╚══════════════════════════╝");
-
-heroi.nome = lerTeclado.question(`Como voce quer ser chamado? 
-  Digite aqui:`); // NOME DO HERÓI
-
 console.log("╔════════════════════════════╗");
 console.log("║    VAMOS AS BATATALHAS!    ║");
 console.log("╚════════════════════════════╝");
 
-console.log(`=========== COMO FUNCIONA ============`);
-console.log(`Seu objetivo é fazer seu heroi batalhar`);
-console.log(`com tres criaturas e sair vitorioso, pos`);
-console.log(`suindo opcao de atacar, defender e se `);
-console.log(`curar, assim como seu inimigo tambem tem.`);
-console.log(`Se seu personagem morrer voce perde, ja`);
-console.log(`se ganhar, leva tudo.`);
-console.log(`======================================`); // REGRAS
+// → Seu código aqui:
+let decisaoHeroi = null
+let decisaoInimigo = null
+let curaInimigo = null
+let curaHeroi = null
+let danoHeroi = null
+let danoInimigo = null
+let qntCuraInimigo = 1
+let qntCuraHeroi = 1
 
-console.log(`Suas estatísticas são:`);
-console.table(heroi); // ESTATÍSTICAS DO HERÓI
-let decisao = null;
-for (let i = inimigos.length; i != 0; i--) {
-  console.log(
-    `Seu inimigo é o ${inimigos[0].nome}. Ele possuiu ${inimigos[0].hp} pontos de vida`
-  ); // ESTÁSTICAS DO INIMIGO
-  for (let i = 1; inimigos[0].hp > 0; i++)
-    decisao = lerTeclado.questionInt(`O que voce quer fazer?
-    1 - Atacar | 2 - Defender | 3 - Curar-se 
-    Digite aqui: `);
-  let decisaoInimigo = Math.floor(Math.random() * (10 + 1));
-  let danoHeroi = Math.floor(Math.random() * (heroi.danoMax + heroi.danoMin));
-  let danoInimigo = Math.floor(
-    Math.random() * (inimigos[0].danoMax + inimigos[0].danoMin)
-  );
-  if (decisaoInimigo <= 1) {
-    // CURAR
-    if(decisao === 1) {
-      inimigos[0].hp -= danoHeroi
-    }
-    inimigos[0].hp += Math.floor(Math.random() * (20 + 10));
-    if (inimigos[0].hp > 100) {
-      inimigos[0].hp = 100;
-    }
-    console.log(`Seu inimigo se curou.`)
-  } else if (decisaoInimigo <= 3) {
-    // DEFENDER
-    danoHeroi = Math.floor(danoHeroi / 4);
-    console.log(`Seu inimigo se defendeu.`) 
-  } else {
-    // ATACAR
-    if (decisao === 2) {
-      heroi.hp -= Math.floor(danoInimigo / 4);
-    }else {
-      heroi.hp -= danoInimigo;
-    }
-    console.log(`Seu inimigo atacou.`)
-  }
-  switch (decisao) {
-    case 1:
-      inimigos[0].hp -= danoHeroi;
-      console.log(`Voce atacou seu inimigo.`)
-      break;
-    case 2:
-      console.log(`Voce defendeu o ataque do inimigo.`)
-      break;
-    case 3:
-      Heroi.hp += Math.floor(Math.random() * (20 + 10));
-      if (Heroi.hp > 100) {
-        Heroi.hp = 100;
+while (inimigos.length !== 0) {
+  console.log(`Inimigo Atual: ${inimigos[0].nome}
+    Vida Total: ${inimigos[0].hpTotal}`)
+  while(inimigos[0].hp >= 0 || heroi.hpAtual >= 0) {
+    danoHeroi = Math.floor(Math.random() * (heroi.danoMax + heroi.danoMin));
+    danoInimigo = Math.floor(Math.random() * (inimigos[0].danoMax + inimigos[0].danoMin));
+    curaInimigo = Math.floor(Math.random() * (20 + 10));
+    curaHeroi = Math.floor(Math.random() * (20 + 10));
+    decisaoInimigo =  Math.floor(Math.random() * (10 + 1));
+    decisaoHeroi = lerTeclado.questionInt(`Qual acao voce toma?
+    1 - Atacar | 2 - Defender | 3 - Curar `)
+
+    if (decisaoInimigo <= 1) { // CURA DO INIMIGO
+      if (qntCuraInimigo !== 0){
+        if(decisaoHeroi === 3) { 
+          inimigos[0].hp += curaInimigo
+          qntCuraInimigo --
+          inimigos[0].hp -= danoInimigo
+          console.log(`O inimigo se curou enquanto voce atacava.`)
+        }
+        if (inimigos[0].hp >= 100) {
+          inimigos[0].hp = 100  
+          console.log(`O inimigo curou ${curaInimigo} de vida.`)
+        }
       }
-      console.log(`Voce se curou.`)
-    default:
+    }else if (decisaoInimigo <= 3) { // DEFESA DO INIMIGO
+      if(decisaoHeroi === 1) {
+        inimigos[0].hp -= Math.floor(danoHeroi / 4)
+        console.log(`O inimigo defendeu seu ataque recebendo ${ Math.floor(danoHeroi / 4)} de dano.`)
+        continue
+      }else if (decisaoHeroi === 2) {
+        console.log(`Voces se encaram esperando o movimento um do outro.`)
+        continue
+      }else {
+        console.log(`O inimigo escolheu se defender.`)
+      }
+    }else { // ATAQUE DO INIMIGO
+      if (decisaoHeroi === 2) {
+        heroi.hpAtual -= Math.floor(danoInimigo / 4)
+        console.log(`O inimigo te atacou enquanto voce se defendia, voce recebeu ${Math.floor(danoInimigo / 4)}`)
+        continue
+      }else {
+        heroi.hpAtual -= danoInimigo
+        console.log(`O inimigo te atacou causando ${danoInimigo} de dano.`)
+      }
+    }
+
+    switch(decisaoHeroi) {
+      case 1: 
+        inimigos[0].hp -= danoHeroi
+        console.log(`Voce atacou o inimigo causando ${danoHeroi} de dano.`)
+        break
+      case 3: 
+        if (qntCuraHeroi !== 0){ 
+        heroi.hpAtual += curaHeroi
+        qntCuraHeroi --
+
+        if (heroi.hpAtual >= 100) {
+          heroi.hpAtual = 100  
+          console.log(`Voce curou ${curaHeroi} de vida.`)
+        }
+        break        
+      }
+      default:
+        console.log(`Erro nos cálculos de batalha`)
+    }
+    console.log(`Vida do Heroi: ${heroi.hpAtual}
+    Vida do Inimigo: ${inimigos[0].hp}`)
   }
-  console.log(`========= STATUS ==========`);
-  console.log(`HP DO HEROI: ${heroi.hp}`);
-  console.log(`HP DO INIMIGO: ${inimigos[0].hp}`);
-  console.log(`===========================`);
+  if(inimigos[0].hp <= 0 && heroi.hpAtual <= 0) {
+    console.log(`Voce morreu junto ao ${inimigos[0].nome}. Sua jornada acaba aqui.`)
+  }else if(inimigos[0].hp <= 0) {
+    console.log(`Voce derrotou o ${inimigos[0].nome}.`)
+    inimigos.shift()
+  }else if(heroi.hp <= 0) {
+    console.log(`Voce foi derrotado por ${inimigos[0].nome}`)
+  }
 }
+
+    
+  
+  
+
+
 
 console.log("_______________________________");
 
