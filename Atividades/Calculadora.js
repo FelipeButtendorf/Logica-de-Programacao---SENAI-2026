@@ -23,19 +23,20 @@ do {
     let resultado = null;
     let operacao = null;
     let conta = ""
+    let numero = null
+    const operacoes = ['+', '-', '/', '*', '%', '=']
 
     while (operacao !== '=') {
-        while(typeof numero !== Number)
         numero = lerTeclado.questionFloat(`Escolha um numero: `);
         conta += ` ${numero} `
-        console.log("╔═══════════════════ ");
+        console.log("╔════════════════╗ ");
         console.log(`║  ${conta}`);
-        console.log("║~~~~~~~~~~~~~~~~~~~")
-        console.log("║ + |  7   8   9 ")
-        console.log("║ - |  4   5   6 ")
-        console.log("║ x |  3   2   1 ")
-        console.log("║ / |  0 ")
-        console.log("╚═══════════════════");
+        console.log("║================║")
+        console.log("║ + |  7   8   9 ║")
+        console.log("║ - |  4   5   6 ║")
+        console.log("║ x |  3   2   1 ║")
+        console.log("║ / |  % | 0 | = ║")
+        console.log("╚════════════════╝");
 
         if (resultado === null) {
             resultado = numero;
@@ -48,38 +49,48 @@ do {
                     resultado -= numero; 
                     break;
                 case '/': 
-                    resultado /= numero; 
+                    resultado /= numero;
                     break;
                 case '*': 
                     resultado *= numero; 
                     break;
+                case '%':
+                    resultado = (resultado  / 100) * numero
+                    break
                 default: console.log("Operação inválida.");
+                break
             }
         }
-        operacao = lerTeclado.question(`Escolha a operacao (+, -, /, * ou =): `);
+        operacao = null
+        while (!operacoes.includes(operacao)) {
+            operacao = lerTeclado.question(`Escolha a operacao (+, -, /, * ou =): `);
+        }
         conta += `${operacao}`
         if(operacao !== `=`) {
-        console.log("╔═══════════════════ ");
-        console.log(`║  ${conta}`);
-        console.log("║~~~~~~~~~~~~~~~~~~~")
-        console.log("║ + |  7   8   9 ")
-        console.log("║ - |  4   5   6 ")
-        console.log("║ x |  3   2   1 ")
-        console.log("║ / |  0 ")
-        console.log("╚═══════════════════");
+            console.log("╔════════════════╗ ");
+            console.log(`║  ${conta}`);
+            console.log("║================║")
+            console.log("║ + |  7   8   9 ║")
+            console.log("║ - |  4   5   6 ║")
+            console.log("║ x |  3   2   1 ║")
+            console.log("║ / |  % | 0 | = ║")
+            console.log("╚════════════════╝");
         }
     }
-
-    console.log("╔═══════════════════ ");
-    console.log(`║  ${conta} ${resultado}  `);
-    console.log("║~~~~~~~~~~~~~~~~~~~")
-    console.log("║ + |  7   8   9 ")
-    console.log("║ - |  4   5   6 ")
-    console.log("║ x |  3   2   1 ")
-    console.log("║ / |  0 ")
-    console.log("╚═══════════════════");
-    sair = lerTeclado.keyInYN(`Deseja sair da calculadora? :`)
-} while (sair == false)
+    if (typeof resultado !== "number" || !Number.isFinite(resultado)) {
+        resultado = `SYNTAX ERROR`;
+    }
+    console.log("╔════════════════╗ ");
+    console.log(`║  ${conta} ${resultado}`);
+    console.log("║================║")
+    console.log("║ + |  7   8   9 ║")
+    console.log("║ - |  4   5   6 ║")
+    console.log("║ x |  3   2   1 ║")
+    console.log("║ / |  % | 0 | = ║")
+    console.log("╚════════════════╝");
+    sair = lerTeclado.keyInYN(`Deseja continuar na calculadora? :`)
+} while (sair == true)
+console.log('Saindo ...')
 
 
 
