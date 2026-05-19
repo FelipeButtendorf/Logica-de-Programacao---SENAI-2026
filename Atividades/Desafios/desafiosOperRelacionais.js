@@ -72,9 +72,6 @@ console.log("_______________________________");
 // e) Exiba cada resultado identificando os produtos pelo nome.
 
 // → Seu código aqui:
-const
-
-
 console.log("_______________________________");
 
 

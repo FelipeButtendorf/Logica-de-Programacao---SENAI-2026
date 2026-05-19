@@ -1,7 +1,7 @@
 // ============================================================
 //   ATIVIDADE 13 – Estruturas de Dados: Matriz
 // ============================================================
-
+let lerTeclado = require("readline-sync");
 
 // ------------------------------------------------------------
 // EXERCÍCIO 1 – Lendo uma matriz
@@ -85,16 +85,16 @@ console.log("_______________________________");
 
 
 console.log("_______________________________");
-const m = [
-    [12,  7, 25],
-    [ 3, 18,  9],
-    [31, 14, 22],
-  ];
+// const m = [
+//     [12,  7, 25],
+//     [ 3, 18,  9],
+//     [31, 14, 22],
+//   ];
 
-let somaLinha = null
-let somaColuna = null
-let somaDiagonal = null
-let colunas = 3
+// let somaLinha = null
+// let somaColuna = null
+// let somaDiagonal = null
+// let colunas = 3
 // ------------------------------------------------------------
 // EXERCÍCIO 4 – Soma das linhas e das colunas
 // ------------------------------------------------------------
@@ -104,17 +104,26 @@ let colunas = 3
 // d) Exiba a soma da DIAGONAL principal (m[i][i]).
 
 // → Seu código aqui:
-for(let i = 0; i < m.length; i++) {
-    for(let j = 0; j < m[i].length; j++) {
-        somaLinha += m[i][j]
-        }
-    console.log(`Soma da linha ${i +1} : ${somaLinha}`)
-    somaLinha = null
-}
-for(let i = 0; i < colunas; i++) {
-    somaColuna += m[i][j]
+// for(let i = 0; i < m.length; i++) { // SOMA DA LINHA
+//     for(let j = 0; j < m[i].length; j++) {
+//         somaLinha += m[i][j]
+//         if( i === j) { // VERIFICAÇÃO SE O NUMERO DA LINHA É IGUAL AO DA COLUNA
+//             somaDiagonal += m[i][j] // SOMA DA DIAGONAL PRINCIPAL
+//         }
+//     }
+//     console.log(`Soma da linha ${i + 1} : ${somaLinha}`)
+//     somaLinha = null
+// }
 
-}
+// for(let j = 0; j < m.length; j++) { // SOMA DAS COLUNAS
+//     for(let i = 0; i < colunas; i ++) {
+//         somaColuna += m[i][j]
+//     }
+//     console.log(`Soma da coluna ${j + 1}: ${somaColuna}`)
+//     somaColuna = null
+// }
+
+// console.log(`Soma da Diagonal principal: ${somaDiagonal}`) // EXIBIANDO A SOMA DA DIAGONAL PRINCIPAL
 
 
 
@@ -130,6 +139,28 @@ console.log("_______________________________");
 // c) Exiba a matriz final com console.table().
 
 // → Seu código aqui:
+// m = []
+
+// let linhas = null
+// let colunas = 0
+// let valor = null
+
+// while(linhas <= 0) {
+//     linhas  = lerTeclado.questionInt(`Quantas linhas voce quer que tenha a matriz?
+// Digite aqui `)
+// }
+// while(colunas <= 0)
+//     colunas  = lerTeclado.questionInt(`Quantas colunas voce quer que tenha a matriz?
+// Digite aqui `)
+
+// for(let i = 0 ; i < linhas; i ++) {
+//     m.push([])
+//     for(let j = 0; j < colunas ; j++ ) {
+//         valor = lerTeclado.questionFloat(`Digite m[${i}][${j}]: `)
+//         m[i].push(valor)
+//     }
+// }
+// console.table(m)
 
 
 console.log("_______________________________");
