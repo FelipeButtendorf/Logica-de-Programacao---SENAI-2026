@@ -29,8 +29,8 @@ let lerTeclado = require("readline-sync");
 // ------------------------------------------------------------
 // a) Utilizando o vetor:
       const numeros = [12, 7, 25, 3, 18, 9, 31, 14];
-      let media = null
-      let soma = null
+      // let media = null
+      // let soma = null
 // b) Calcule a SOMA de todos os números.
 // c) Calcule a MÉDIA (soma / quantidade).
 // d) Exiba: "Soma: <soma> | Média: <média>" (use toFixed(2) na média).
@@ -50,8 +50,8 @@ console.log("_______________________________");
 // ------------------------------------------------------------
 // a) Utilizando o vetor:
       const temperaturas = [22.5, 19.0, 27.3, 18.7, 30.1, 25.4, 21.8];
-      let maior = temperaturas[0]
-      let menor = temperaturas[0]
+      // let maior = temperaturas[0]
+      // let menor = temperaturas[0]
 // b) Encontre a MAIOR e a MENOR temperatura.
 // c) Exiba: "Maior: <maior>°C | Menor: <menor>°C"
 
@@ -195,8 +195,7 @@ console.log("_______________________________");
         { titulo: "Memórias Póstumas",  paginas: 208 },
         { titulo: "Capitães da Areia",  paginas: 280 },
       ];
-      let total = null
-      let media = null
+
 // b) Exiba a lista com console.table().
 // c) Usando for, calcule:
 //    - Total de páginas de todos os livros.
@@ -204,11 +203,26 @@ console.log("_______________________________");
 // d) Exiba o título do livro com MAIS páginas.
 
 // → Seu código aqui:
-console.table(livros)
-for(let i = 0; i < livros.length; i++) {
-    total += livros.paginas[i]
-}
-media = total / livros.length
+
+// let total = null
+// let media = null
+// let maior = livros[0].paginas
+// let nome = ""
+
+// for(let i = 0; i < livros.length; i++) {
+//     total += livros[i].paginas
+// }
+// for(let i = 1; i < livros.length; i++) {
+//   if(maior < livros[i].paginas) {
+//     maior = livros[i].paginas
+//     nome = livros[i].titulo
+//   }
+// }
+// media = total / livros.length
+// console.log(`Total : ${total}
+// media : ${media}`)
+// console.log(`Titulo com mais páginas: ${nome}`)
+
 
 
 
@@ -220,6 +234,8 @@ console.log("_______________________________");
 // ------------------------------------------------------------
 // a) Utilizando o vetor:
       const idades = [12, 17, 21, 15, 30, 45, 9, 67, 19, 8];
+      let menores = []
+      let maiores = []
 // b) Usando for, separe o vetor acima em dois vetores:
 //    - menores[]: pessoas com idade < 18
 //    - adultos[]: pessoas com idade >= 18
@@ -228,7 +244,15 @@ console.log("_______________________________");
 //    "Adultos (<qtd>): <adultos>"
 
 // → Seu código aqui:
-
+for(let i = 0;i < idades.length; i++ ) {
+  if(idades[i] >= 18) {
+    maiores.push(idades[i])
+    idades.shift()
+  } else {
+    menores.push(idades[i])
+  }
+}
+console.log(maiores,menores)
 
 console.log("_______________________________");
 
