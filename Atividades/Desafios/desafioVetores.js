@@ -15,6 +15,26 @@ const notas = [4.5, 7.0, 8.5, 6.0, 9.2, 3.5, 7.8, 5.1, 8.0, 6.5, 9.5, 2.0];
 
 // → Seu código aqui:
 
+// let insuficiente = [] 
+// let regular = []
+// let bom = []
+// let excelente = []
+
+// for(let i = 0; i < notas.length; i++) {
+//   if(notas[i] >= 9) {
+//     excelente.push(notas[i])
+//   }else if(notas[i] >= 7) {
+//     bom.push(notas[i]) 
+//   }else if(notas[i] >= 5) {
+//     regular.push(notas[i])
+//   }else{
+//     insuficiente.push(notas[i])
+//   }
+// }
+// console.log(`Notas excelente : ${excelente}, Quantidade de notas: ${excelente.length}`)
+// console.log(`Notas bom : ${bom}, Quantidade de notas: ${bom.length}`)
+// console.log(`Notas regular : ${regular}, Quantidade de notas: ${regular.length}`)
+// console.log(`Notas insuficientes : ${insuficiente}, Quantidade de notas: ${insuficiente.length}`)
 
 console.log("_______________________________");
 
@@ -23,6 +43,10 @@ console.log("_______________________________");
 // DESAFIO 2 – Top 3 do ranking
 // ------------------------------------------------------------
 // a) Utilizando o vetor de jogadores:
+let organizado = []
+let verificados = []
+let maior = jogadores[0].pontos
+let jogador = 0
 const jogadores = [
   { nome: "Alice",   pontos: 1280 },
   { nome: "Bento",   pontos: 950  },
@@ -39,6 +63,18 @@ const jogadores = [
 //    "3º lugar: <nome> – <pontos> pontos"
 
 // → Seu código aqui:
+
+for(let i = 1; i < jogadores.length; i ++) {
+  if(maior < jogadores[i].pontos) {
+    maior = jogadores[i].pontos
+    jogador = jogadores[i]
+  }
+}
+organizado.push(jogador) 
+console.log(organizado)
+
+
+
 
 
 console.log("_______________________________");
@@ -89,3 +125,7 @@ const produtos = [
 
 
 console.log("_______________________________");
+
+function newFunction() {
+  ;
+}
