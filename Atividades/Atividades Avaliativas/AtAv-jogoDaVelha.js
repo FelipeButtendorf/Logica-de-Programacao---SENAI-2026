@@ -35,15 +35,15 @@ console.table(tabuleiro)
 for(let i = 9; i > 0; i--) { // LOOP DE JOGADAS MÁXIMAS ( 9 JOGADAS )
     do {
         if(simbolo === "X") { // EXIBE QUAL JOGADOR DEVE JOGAR
-            console.log(`Jogador 1`)
+            console.log(`Jogador ${simbolo}`)
         } else {
-            console.log(`Jogador 2`)
+            console.log(`Jogador ${simbolo}`)
         }
-
-        linha = lerTeclado.questionInt(`Digite a linha: `)// PERGUNTA A LINHA DESEJADA
-        coluna = lerTeclado.questionInt(`Digite a coluna: `)// PERGUNTA A COLUNA DESEJADA
-
-    } while (tabuleiro[linha - 1][coluna - 1] === "X" || tabuleiro[linha - 1][coluna - 1] === "O") // CONDIÇÃO DE LOOP ATÉ QUE O JOGADOR ESCOLHA UMA POSIÇÃO QUE AINDA NÃO FOI ESCOLHIDA
+        while(linha >= 0 || linha <= 4 || coluna >= 0 || coluna <=4) { // LOOP ENQUANTO O USUARIO NÃO DIGITA UM VALOR VÁLIDO PARA LINHA E COLUNA 
+            linha = lerTeclado.questionInt(`Digite a linha: `)// PERGUNTA A LINHA DESEJADA
+            coluna = lerTeclado.questionInt(`Digite a coluna: `)// PERGUNTA A COLUNA DESEJADA
+        }
+    }while (tabuleiro[linha - 1][coluna - 1] === "X" || tabuleiro[linha - 1][coluna - 1] === "O") // CONDIÇÃO DE LOOP ATÉ QUE O JOGADOR ESCOLHA UMA POSIÇÃO QUE AINDA NÃO FOI ESCOLHIDA
 
     tabuleiro[linha - 1][coluna - 1] = simbolo // ADIONA O SIMBOLO A LINHA E COLUNA QUE O JOGADOR ESCOLHEU
     
@@ -52,12 +52,23 @@ for(let i = 9; i > 0; i--) { // LOOP DE JOGADAS MÁXIMAS ( 9 JOGADAS )
     for(let i = 0; i < 3; i ++) {
         if(tabuleiro[i][i] === "X" || tabuleiro[i][i] === "O") {//VERIFICA SE O ESPAÇO ESTA PREENCHIDO E O ADICIONA NUMA VARIAVEL DE VERIFICAÇÃO("XXX" ou "OOO")   
             stringDiagonal += tabuleiro[i][i]
+            console.log(stringDiagonal)
         }
         if(stringDiagonal === linhaX || stringDiagonal === linhaO) { //VERIFICA SE A DIAGONAL PRINCIPAL ESTÁ PREENCHIDA PELO MESMO SIMBOLO
             venceu = true
             break
-        }
+        }  
     }
+    stringDiagonal = ""
+
+    // VERIFICAÇÃO DA DIAGONL INVERTIDA
+    if(tabuleiro[0][2] == "X" && tabuleiro[1][1] == "X" && tabuleiro[2][0] == "X") {
+        venceu = true
+    }
+    if(tabuleiro[0][2] == "O" && tabuleiro[1][1] == "O" && tabuleiro[2][0] == "O") {
+        venceu = true
+    }
+
     for(let i = 0 ; i < 3; i++) {
         for(let j = 0 ; j < 3; j++) {// VERIFICA SE ALGUMA LINHA FOI PREENCHIDA COM O MESMO SIMBOLO E EXIBE O VENCEDOR CASO VERDADEIRO
             if(tabuleiro[i][j] === "X" || tabuleiro[i][j] === "O") {//VERIFICA SE O ESPAÇO ESTA PREENCHIDO E O ADICIONA NUMA VARIAVEL DE VERIFICAÇÃO("XXX" ou "OOO")   
@@ -90,9 +101,9 @@ for(let i = 9; i > 0; i--) { // LOOP DE JOGADAS MÁXIMAS ( 9 JOGADAS )
 
     if(venceu) {//VERIFICA QUAL O VENCEDOR 
         if(simbolo === "X") {
-            console.log(`Player 1 wins!`)
+            console.log(`Jogador "X" venceu!`)
         } else {
-            console.log(`Player 2 wins!`)
+            console.log(`Jogador "O" venceu!`)
         }
         break
     }

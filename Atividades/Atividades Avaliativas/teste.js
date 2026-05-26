@@ -37,23 +37,15 @@ let array = ["X","X","X"]
 array.toString("")
 console.log(array)
 1,1
-2,1
-3,1
 
-1,2
-2,2
-3,2
-
-1,3
-2,3
-3,3
-for(let i = 0; i < 3; i++) {
-    for(let j ; j < 3; j++) {
+for(let r = 0; r < 3; r++)
+    for(let i = 0; i < 3; i++) {
+        for(let j ; j < 3; j++) {
         stringColuna+= tabuleiro[j][i]
-        if(stringColuna === linhaX || stringColuna === linhaO) {
+            if(stringColuna === linhaX || stringColuna === linhaO) {
             venceu = true
+            }
         }
-    }
     stringColuna = ""   
     if(venceu) {
         break
