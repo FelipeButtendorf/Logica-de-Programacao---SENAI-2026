@@ -23,13 +23,13 @@ let tabuleiro = [
 let linha = null
 let coluna = null
 let continuar = true 
-do {
-    linha = lerTeclado.questionInt(`Digite uma linha: `)
-    coluna = lerTeclado.questionInt(`Digite uma coluna: `)
-    if(tabuleiro[linha - 1][coluna - 1] === "-") {
+// 1 - PEDIR A LINHA E A COLUNA E VERIFICAR SE ELA JA ESTA OCUPADA, SE ESTIVER EXIBIR ERRO E PERGUNTAR DNV
+// 2 - ADICIONAR E EXIBIR O SIMBOLO(X e O) NA LINHA E COLUNA QUE O USURARIO ESCOLHEU (console.table(tabuleiro))
+// 3 - Crie um loop de 5 repeticoes e encerre depos disso
 
-    }
-}
+linha = lerTeclado.questionInt(`Digite uma linha: `)
+coluna = lerTeclado.questionInt(`Digite uma coluna: `)
+
 
 
 console.log("_______________________________");
