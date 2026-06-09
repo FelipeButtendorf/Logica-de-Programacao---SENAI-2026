@@ -161,7 +161,6 @@ console.log("_______________________________");
       numeros = [12, 7, 25, 3, 18, 9, 31, 14];
 
 // → Seu código aqui:
-
 // function somarVetor(vet) {
 //     let somaVet = null
 //     for(let i = 0;i < vet.length;i++) {
@@ -196,10 +195,6 @@ console.log("_______________________________");
 //     return menorVet
 // }
 // console.log(`Menor do vetor : ${menorDoVetor(numeros)}`)
-
-
-
-
 
 console.log("_______________________________");
 
@@ -246,6 +241,7 @@ console.log("_______________________________");
 // exibirAluno()
 // criarAluno("Felipe Jorge",16,9.99)
 // exibirAluno()
+
 
 console.log("_______________________________");
 

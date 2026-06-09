@@ -1,6 +1,7 @@
-
 let rs = require("readline-sync");
-
+let pecaInput = null
+let deLinha = null
+let deColuna = null
 function exibirTabuleiro() {
     console.table(tabuleiro);
 }
@@ -42,7 +43,8 @@ let movimentoLinhaValido = false;
 
 if (pecaTipo === "P" && paraLinha === deLinha + 1) {
     movimentoLinhaValido = true;
-}else if (pecaTipo === "B" && paraLinha === deLinha - 1) {
+}
+if (pecaTipo === "B" && paraLinha === deLinha - 1) {
     movimentoLinhaValido = true;
 }
 
