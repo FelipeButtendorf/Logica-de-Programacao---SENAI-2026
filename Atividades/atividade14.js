@@ -192,7 +192,13 @@ console.log("_______________________________");
 // c) Chame listarFilmes() duas vezes.
 
 // → Seu código aqui:
-
+// function listarFilmes() {
+//     for(let i = 0; i < filmes.length ; i++) {
+//         console.log(`${i+1} - ${filmes[i]}`)
+//     }
+// } 
+// listarFilmes()
+// listarFilmes()
 
 console.log("_______________________________");
 
@@ -212,6 +218,30 @@ console.log("_______________________________");
 // E chame a função principal.
 
 // → Seu código aqui:
+// function limparTela() {
+//     for(let i = 0;i < 30;i++) {
+//         console.log("")
+//     }
+// }
+
+// function banner() {
+//     console.log(`TRES PRATOS DE TRIGO\nPARA TRES TIGRES\n TRISTES :(`)
+// }
+
+// function pedirNome() {
+//     let nome = rs.question(`Qual o seu nome?`)
+//     console.log(`Olá, ${nome}!`)
+// }
+// function rodape() {
+//     console.log(`Sistema desenvolvido por Felipe.`)
+// }
+// function principal() {
+//     limparTela()
+//     banner()
+//     pedirNome()
+//     rodape()
+// }
+// principal()
 
 
 console.log("_______________________________");
@@ -233,6 +263,66 @@ console.log("_______________________________");
 //    correspondente em cada case. Encerre quando o usuário digitar 0.
 
 // → Seu código aqui:
+// let n1 = null
+// let n2 = null
+
+// function pedirNumeros() {
+//     let n1 = rs.questionFloat(`Insira o primerio numero:`)
+//     let n2 = rs.questionFloat(`Insira o segundo numero:`)
+// }
+
+// function opcaoSomar() {
+//     pedirNumeros()
+//     console.log(`${n1} + ${n2} = ${n1+n2}`)
+// }
+
+// function opcaoSubtrair() {
+//     pedirNumeros()
+//     console.log(`${n1} - ${n2} = ${n1-n2}`)
+// }
+
+// function opcaoMultiplicar() {
+//     pedirNumeros()
+//     console.log(`${n1} * ${n2} = ${n1*n2}`)
+// }
+
+// function opcaoDividir() {
+//     pedirNumeros()
+//     console.log(`${n1} / ${n2} = ${n1/n2}`)
+// }
+
+// function exibirMenu() {
+//     console.log(`1 - Somar || 2 - Subtrair || 3 - Multiplicar || 4 - Dividir || 0 - Sair`)
+// }
+
+// let opcao = null
+// let sair = true
+
+// do{
+//     exibirMenu()
+//     opcao = rs.questionInt(`Escolha uma das opcoes acima : `)
+//     switch(opcao) {
+//         case 1:
+//             opcaoSomar()
+//             break
+//         case 2:
+//             opcaoSubtrair()
+//             break
+//         case 3:
+//             opcaoMultiplicar()
+//             break
+//         case 4:
+//             opcaoDividir()
+//             break
+//         case 0:
+//             sair = false
+//             break
+//         default:
+//             console.log(`Opcao invalida, tente novamente.`)
+//     }
+// }while(sair)
+// console.log(`Saindo...`)
+
 
 
 console.log("_______________________________");
