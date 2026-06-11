@@ -3,6 +3,26 @@ const rs = require('readline-sync')
 let jogadores = [] // ARRAY DE JOGADORES
 let baralhoID = null
 let cartasCompradas = []
+let dealer = {
+    nome: "Dealer",
+    mao: [],
+    pontos: null 
+}
+let cartasRestantes = null
+
+async function exibirCartasRestantes(deckID) {
+    try {
+        const resposta = await axios.get(`https://deckofcardsapi.com/api/deck/${deckID}`)
+        cartasRestantes = resposta.data.remaining
+    }
+    catch(error) {
+        console.log(error)
+    }
+    console.log(`Cartas restantes: ${cartasRestantes}`)
+}
+
+function exibirMaoDealer() { console.log(`Mao do Dealer : ${dealer.mao}`)
+}
 
 function exibirTodasAsMaos() {
     for(let i = 0; i < jogadores.length; i++) {
@@ -10,8 +30,7 @@ function exibirTodasAsMaos() {
     }
 } 
 
-function exibirMao(indiceJogador) {
-    console.log(`Mao de ${jogadores[indiceJogador].nome} : ${jogadores[indiceJogador].mao}`)
+function exibirMao(indiceJogador) { console.log(`Mao de ${jogadores[indiceJogador].nome} : ${jogadores[indiceJogador].mao}`)
 } 
 
 function exibirJogadores() {
@@ -58,7 +77,7 @@ function registrarJogadores() {
     let adicionar = false
     do {
         jogadores.push(
-            jogador = {
+            {
                 nome: rs.question(`Qual o seu nome? : `),
                 mao: [],
                 pontos: null
@@ -77,15 +96,19 @@ async function distribuirCartas() {
     for(let i = 0; i < jogadores.length; i++) {
         await pegarCarta(baralhoID, 2)
         adicionarMao(cartasCompradas, jogadores[i].mao)
-    }  
+    } 
+    await pegarCarta(baralhoID, 2)
+    adicionarMao(cartasCompradas,dealer.mao) 
 }
 
 async function iniciarJogo() {
     registrarJogadores()
     exibirJogadores()
     await criarBaralho()
-    distribuirCartas()
+    await distribuirCartas()
     exibirTodasAsMaos()
+    exibirMaoDealer()
+    await exibirCartasRestantes(baralhoID)
 }
 
 iniciarJogo()
