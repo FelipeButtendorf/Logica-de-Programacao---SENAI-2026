@@ -63,11 +63,24 @@ let letrasChutadas = []
 let chutarPalavra = false
 let numeros = ["2","3","4","5","6","7","8","9","0"]
 
+const estadosForca = [ // Este array foi feito com o chatGPT por falta de tempo
+    "______\n|   \n|   \n|   \nL_   \n", // 0 erros
+    "______\n|   o\n|   \n|   \nL_   \n", // 1 erro
+    "______\n|   o\n|   |\n|   \nL_   \n", // 2 erros
+    "______\n|   o\n|  /|\n|   \nL_   \n", // 3 erros
+    "______\n|   o\n|  /|\\\n|   \nL_   \n",// 4 erros
+    "______\n|   o\n|  /|\\\n|  / \nL_   \n",// 5 erros
+    "______\n|   o\n|  /|\\\n|  / \\\nL_   \n" // 6 erros (Game Over)
+]
+
 function palavraAleatoria() {
     const aleatorio = Math.floor(Math.random() * ((palavrasForca.length - 1) + 1))
     palavra = palavrasForca[aleatorio]
 }
 
+function exibirLetrasChutadas() {
+console.log(`Letras chutadas: ${letrasChutadas}`)
+}
 function criarForca() {
     for(let i = 0; i < palavra.length ; i++) {
         forca.push("_")
@@ -75,13 +88,15 @@ function criarForca() {
 }
 
 function exibirForca() {
+    console.log(estadosForca[6-tentativas])
     console.log(forca.join(" "))
+    exibirLetrasChutadas()
 }
 
 function pedirLetra() {
     exibirForca()
     do {
-    letra = rs.question(`\nChute uma letra que voce acha que contem na palavra(Digite 1 para chutar uma palavra) : \n`)
+    letra = rs.question(`\nChute uma letra que voce acha que contem na palavra(Digite 1 para chutar uma palavra) : \n`).toLowerCase()
     } while(letrasChutadas.includes(letra) || letra.length > 1 || letra === "" || numeros.includes(letra))
     if(letra === "1") {
         return chutarPalavra = true    
@@ -136,6 +151,7 @@ function exibirResultado() {
         resultado = `Game over, mais sorte da proxima vez\n A palavra era ${palavra}`
     }
     console.log(resultado)
+    console.log(estadosForca[6-tentativas])
 }
 
 function iniciarJogo() {

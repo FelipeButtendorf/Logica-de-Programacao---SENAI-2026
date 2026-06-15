@@ -9,6 +9,19 @@ let dealer = {
     pontos: null 
 }
 let cartasRestantes = null
+const dezPontos = ["J","Q","K"]
+const outrosPontos = ["2","3","4","5","6","7","8","9"]
+function calcularPontosJogadores(jogadorDaVez) {
+    for(let i = 0; i < jogadorDaVez.mao.length; i++) {
+        if(jogadorDaVez.mao[i][0] === "J" || jogadorDaVez.mao[i][0] === "Q" || jogadorDaVez.mao[i][0] === "J")
+        if(Number(jogadorDaVez.mao[i][0]) > 0 && Number(jogadorDaVez.mao[i][0]) < 10) {
+            Number(jogadorDaVez.mao[i][0] += jogadorDaVez.pontos
+        }
+    }
+}
+function decisaoPegarCarta(jogadorDaVez) {
+    decisao = rs.keyInYN(`${jogadorDaVez.nome}, gostaria de comprar uma carta?`)
+}
 
 async function exibirCartasRestantes(deckID) {
     try {
