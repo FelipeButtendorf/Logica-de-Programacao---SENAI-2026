@@ -9,18 +9,46 @@ let dealer = {
     pontos: null 
 }
 let cartasRestantes = null
-const dezPontos = ["J","Q","K"]
+const dezPontos = ["0","J","Q","K"]
 const outrosPontos = ["2","3","4","5","6","7","8","9"]
-function calcularPontosJogadores(jogadorDaVez) {
-    for(let i = 0; i < jogadorDaVez.mao.length; i++) {
-        if(jogadorDaVez.mao[i][0] === "J" || jogadorDaVez.mao[i][0] === "Q" || jogadorDaVez.mao[i][0] === "J")
-        if(Number(jogadorDaVez.mao[i][0]) > 0 && Number(jogadorDaVez.mao[i][0]) < 10) {
-            Number(jogadorDaVez.mao[i][0] += jogadorDaVez.pontos
-        }
+
+function exibirPontos(jogador) {
+    console.log(`${jogad}`)
+}
+function calcularPontosDealer() {
+    calcularPontosJogador(dealer) 
     }
 }
-function decisaoPegarCarta(jogadorDaVez) {
-    decisao = rs.keyInYN(`${jogadorDaVez.nome}, gostaria de comprar uma carta?`)
+function calcularPontosJogadores() {
+    for(let i = 0; i < jogadores.length; i++) {
+        console.log(calcularPontosJogador(jogadores[i]))
+    }
+}
+
+function jogadorDaVez() {
+    
+}
+
+function calcularPontosJogador(jogador) {
+    let quantidadeDeAs = 0
+    for(let i = 0; i < jogador.mao.length; i++) {
+        if(dezPontos.includes(jogador.mao[i][0])){
+            jogador.pontos += 10
+        }else if(outrosPontos.includes(jogador.mao[i][0])) {
+            jogador.pontos += Number(jogador.mao[i][0])
+        }else if(jogador.mao[i][0] === "A") {
+            jogador.pontos += 11
+            quantidadeDeAs ++
+        }
+    }
+    while(jogador.pontos >= 21 && quantidadeDeAs > 0) {
+        jogador.pontos -= 10
+        quantidadeDeAs --   
+    }
+}
+
+function decisaoPegarCarta(jogador) {
+    decisao = rs.keyInYN(`${jogador.nome}, gostaria de comprar uma carta?`)
 }
 
 async function exibirCartasRestantes(deckID) {
@@ -34,7 +62,8 @@ async function exibirCartasRestantes(deckID) {
     console.log(`Cartas restantes: ${cartasRestantes}`)
 }
 
-function exibirMaoDealer() { console.log(`Mao do Dealer : ${dealer.mao}`)
+function exibirMaoDealer() {
+    console.log(`Mao do Dealer : ${dealer.mao}`)
 }
 
 function exibirTodasAsMaos() {
@@ -43,7 +72,8 @@ function exibirTodasAsMaos() {
     }
 } 
 
-function exibirMao(indiceJogador) { console.log(`Mao de ${jogadores[indiceJogador].nome} : ${jogadores[indiceJogador].mao}`)
+function exibirMao(jogador) {
+    console.log(`Mao de ${jogador.nome} : ${jogador.mao}`)
 } 
 
 function exibirJogadores() {
@@ -52,8 +82,8 @@ function exibirJogadores() {
     }
 }
 
-function exibirJogador(indiceJogador) {
-        console.log(jogadores[indiceJogador].nome)
+function exibirJogador(jogador) {
+        console.log(jogador.nome)
 }
 
 async function criarBaralho() { // PEGA O ID DE UM BARALHO EMBARALHADO USANDO API E COLOCA NA VÁRIVEL "BaralhoID"
@@ -122,6 +152,8 @@ async function iniciarJogo() {
     exibirTodasAsMaos()
     exibirMaoDealer()
     await exibirCartasRestantes(baralhoID)
+    console.log(calcularPontosJogadores())
+    console.log(calcularPontosDealer())
 }
 
 iniciarJogo()
