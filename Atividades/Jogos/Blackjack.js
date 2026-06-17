@@ -12,16 +12,23 @@ let cartasRestantes = null
 const dezPontos = ["0","J","Q","K"]
 const outrosPontos = ["2","3","4","5","6","7","8","9"]
 
-function exibirPontos(jogador) {
-    console.log(`${jogad}`)
-}
-function calcularPontosDealer() {
-    calcularPontosJogador(dealer) 
+function exibirPontosJogadores() {
+    for(let i = 0; i < jogadores.length; i++) {
+        exibirPontos(jogadores[i])
     }
 }
+
+function exibirPontos(jogador) {
+    console.log(`${jogador.pontos}`)
+}
+
+function calcularPontosDealer() {
+    calcularPontosJogador(dealer) 
+}
+
 function calcularPontosJogadores() {
     for(let i = 0; i < jogadores.length; i++) {
-        console.log(calcularPontosJogador(jogadores[i]))
+        calcularPontosJogador(jogadores[i])
     }
 }
 
@@ -128,7 +135,7 @@ function registrarJogadores() {
         )
         if(jogadores.length === 4) {
             console.log(`Limite máximo de jogadores atingido!`)
-            adicionar = false
+            break
         } else {
         adicionar = rs.keyInYN(`Gostaria de adicionar mais jogadores(Y/N)? : `)
         }
@@ -152,8 +159,8 @@ async function iniciarJogo() {
     exibirTodasAsMaos()
     exibirMaoDealer()
     await exibirCartasRestantes(baralhoID)
-    console.log(calcularPontosJogadores())
-    console.log(calcularPontosDealer())
+    calcularPontosJogadores()
+    calcularPontosDealer()
 }
 
 iniciarJogo()
