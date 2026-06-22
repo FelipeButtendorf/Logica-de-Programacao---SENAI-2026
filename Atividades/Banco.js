@@ -25,18 +25,18 @@ function criarUsuarioBase() {
                 nomeCompleto: "Felipe Buttendorf Dama",
                 dataNascimento: new Date('2008-02-22'),
                 dadosResponsavel: {
-                nomeCompleto: null,
-                telefone: null,
-                enderecoCompleto: {
-                    cep: null,
-                    estado: null,
-                    cidade: null,
-                    bairro: null,
-                    rua: null,
-                    numero: null,
-                    complemento: null,
-                },
-                parentalidade: null
+                    nomeCompleto: null,
+                    telefone: null,
+                    enderecoCompleto: {
+                        cep: null,
+                        estado: null,
+                        cidade: null,
+                        bairro: null,
+                        rua: null,
+                        numero: null,
+                        complemento: null,
+                    },
+                    parentalidade: null
                 },
                 dependentes: null,
                 email: "felipecodebreaker@email.com",
@@ -56,11 +56,11 @@ function criarUsuarioBase() {
             },
             saldo: 2000,
             bonus: {},
-            logado: true,
+            logado: false,
             senha: "0352",
             investimentos: {
-                rendaFixa: false,
-                rendaVariavel: false
+                rendaFixa: null,
+                rendaVariavel: null
             },
             histórico: {},
             bloqueada: false
@@ -69,7 +69,6 @@ function criarUsuarioBase() {
 }
 
 function exibirMenuInicial() {
-    console.clear
     console.log("=====================================")
     console.log("    BEM-VINDO AO BANCO DO BOSTIL")
     console.log("=====================================")
@@ -85,11 +84,10 @@ function validarEscolha(numMin, numMax, valorEscolhido){
 }
 
 function escolhaDeValor(numMin, numMax){
-    opcao = rs.questionInt(`
-    Digite a opcao desejada : `)
+    opcao = rs.questionInt(`\nDigite a opcao desejada : `)
     while(validarEscolha(numMin, numMax, opcao)){
         console.log("\nValor invalido, tente novamente");
-        opcao = rs.questionInt("Opcao: ")
+        opcao = rs.questionInt(`\nDigite a opcao desejada : `)
     }
     return opcao
 }
@@ -146,12 +144,14 @@ function pedirSenha() {
 
 function verificarSenha(senha) {
     if(contaUsuario.senha === senha) {
-        acessoConcedido = true
+        contaUsuario.logado = true
+        tentativasDeSenha = 3
         return console.log(`Olá ${contaUsuario.infoPessoais.nomeCompleto}. Acessando conta...`)
     }
     tentativasDeSenha --
     return console.log(`Senha incorreta!${tentativasDeSenha} tentativas restantes.`)
 }   
+
 function acessarConta() {
     do{
         do{
@@ -160,9 +160,18 @@ function acessarConta() {
     }while(contaBloqueada(contaUsuario))
     do{
         verificarSenha(pedirSenha())
-    }while(!acessoConcedido && tentativasDeSenha > 0)
+    }while(contaUsuario.logado === false && tentativasDeSenha > 0)
+    if(tentativasDeSenha === 0) {
+        console.log(`Voce atingiu o limite máximo de tentativas de senha. Um alerta foi enviado para o numero do titular da conta.`)
+        contaUsuario.bloqueada = true
+    }
 }
 
+function sacar() {
+    pedirSaque()
+    realizarSaque()
+    exibirSaque()
+}
 function acessarOpcaoPrincipal(escolha) {
     switch(escolha) {
         case 1:
@@ -172,7 +181,10 @@ function acessarOpcaoPrincipal(escolha) {
             depositar()
             break
         case 0:
-            console.log(`Saindo...`)
+            contaUsuario.logado = false
+            contaUsuario = null
+            opcao = null
+            console.log(`Saindo da conta...`)
             break
     }
 }
@@ -191,13 +203,12 @@ function exibirMenuPrincipal() {
 
 function iniciar() {
     do{
-        let opcao = null
         exibirMenuInicial()
         acessarOpcaoInicial(escolhaDeValor(0,2))
-        if(acessoConcedido) {
+        while(contaUsuario && contaUsuario.logado) {
             exibirMenuPrincipal()
             acessarOpcaoPrincipal(escolhaDeValor(0,2))
-        } 
+        }
     }while(opcao !== 0)
 }
 
