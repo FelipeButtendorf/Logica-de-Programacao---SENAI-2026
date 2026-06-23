@@ -336,7 +336,7 @@ function exibirDetalhesConta() { // EXIBI DETALHES DA CONTA COMO NOME COMPLETO, 
     console.log(`      DETALHES DA CONTA`)
     console.log(`=============================`)
     console.log(`Nome do Titular: ${contaUsuario.infoPessoais.nomeCompleto}`)
-    console.log(`Numero da conta: R$ ${(contaUsuario.conta).toFixed(2)}`)
+    console.log(`Numero da conta: ${contaUsuario.conta}`)
     console.log(`Saldo atual: R$ ${(contaUsuario.saldo).toFixed(2)}`)
     console.log(`Limite de Saque: R$ ${(contaUsuario.limites.saque).toFixed(2)}`)
     console.log(`Limite de Deposito: R$ ${(contaUsuario.limites.deposito).toFixed(2)}`)
