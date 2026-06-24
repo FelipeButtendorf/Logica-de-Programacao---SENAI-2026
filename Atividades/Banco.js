@@ -5,6 +5,8 @@ const taxas = {}
 let contaUsuario = null
 let tentativasDeSenha = 3
 let acessoConcedido = false
+let dataHoraBrasil = null
+let numeros = ["1","2","3","4","5","6","7","8","9","0"]
 
 function criarUsuarioBase() { // USUARIO PADRAO; CONTA: 123, SENHA: 0352
     usuarios.push(
@@ -69,6 +71,15 @@ function criarUsuarioBase() { // USUARIO PADRAO; CONTA: 123, SENHA: 0352
     )
 }
 
+function coletarDataHoraAtual() {
+    dataHoraBrasil = new Intl.DateTimeFormat('pt-BR', {
+        timeZone: 'America/Sao_Paulo',
+        dateStyle: 'full',
+        timeStyle: 'medium'
+    }).format(new Date());
+    return dataHoraBrasil
+}
+
 function exibirMenuInicial() { // MENU DE LOGAR E CRIAR UMA CONTA
     console.log("=====================================")
     console.log("    BEM-VINDO AO BANCO DO BOSTIL")
@@ -96,8 +107,7 @@ function escolhaDeValor(numMin, numMax){// PEDIR OPCAO DESEJADA
 function criarConta() { // ADICIONA USUARIO BASE AOS USUARIOS
     criarUsuarioBase()
     console.clear()
-    console.log(`
-    Usuario ${usuarios[usuarios.length-1].infoPessoais.nomeCompleto} Cadastrado!\n`)
+    console.log(`Usuario ${usuarios[usuarios.length-1].infoPessoais.nomeCompleto} Cadastrado!\n`)
 }
 
 function acessarOpcaoInicial(escolha) { // ACESSA A OPCAO DO NENU INICAL O USUARIO ESCOLHEU
@@ -106,7 +116,7 @@ function acessarOpcaoInicial(escolha) { // ACESSA A OPCAO DO NENU INICAL O USUAR
             acessarConta()
             break
         case 2:
-            criarConta()
+            cadastrarConta()
             break
         case 0:
             console.log(`Saindo...`)
@@ -119,13 +129,38 @@ function pedirConta() { // PEDIR NUMERO DA CONTA
     return pedirConta
 }
 
-function cadastrarConta() { // NÃO FINALIZADO
-    let nomeUsuario = rs.question(``)
-    let sobrenomeUsuario = rs.question(``)
-    let idadeUsuario = rs.questionInt(``)
+function validacaoCPF(cpf) {
+    for(let i = 0; i < cpf.length; i++) {
+        if(!(numeros.includes(cpf[i]))) {
+            return false
+        }
+    }
+    return true
+}
+
+function cadastrarConta() {
+    let idadeUsuario = rs.questionInt(`Digite sua idade : `)
+    while(idadeUsuario < 18) {
+        console.log(`Menor de idade detectado, a SWAT sera enviada para o seu endereço atual, ou se prefrir, digite um valor maior ou igual a 18.`)
+        idadeUsuario = rs.questionInt(`Digite sua idade : `)
+    }
+    let nomeUsuario = rs.question(`Nome do usuario : `)
+    let sobrenomeUsuario = rs.question(`Sobrenome do usuario : `)
+    let contaAleatoria = Math.floor(Math.random() * (1000 + 1))
+    let cpf = rs.question(`Digite seu CPF : `)
+    while(cpf.length !== 11) {
+        console.log(`CPF invalido, tente outro.`)
+        cpf = rs.question(`Digite seu CPF : `)
+    }
+    let senhaUsuario = rs.question(`Crie uma senha de 4 digitos: `)
+    while(senhaUsuario.length !== 4) {
+        console.log(`Senha inválida, tente criar outra.`)
+        senhaUsuario = rs.question(`Crie uma senha de 4 digitos: `)
+    }
+
     usuarios.push(
         {
-            conta: Math.floor(Math.random() * (1000 + 1)),
+            conta: contaAleatoria.toString(),
             limites: {
                 saque: 10000,
                 deposito: 10000,
@@ -136,10 +171,10 @@ function cadastrarConta() { // NÃO FINALIZADO
                 debito: true
             },
             infoPessoais: {
-                nome: rs.question(`Digite seu nome : `),
-                sobrenome: rs.question(`Digite seu sobrenome : `),
+                nome: nomeUsuario,
+                sobrenome: sobrenomeUsuario,
                 nomeCompleto: null,
-                idade: null,
+                idade: idadeUsuario,
                 dataNascimento: null,
                 dadosResponsavel: {
                     nomeCompleto: null,
@@ -156,25 +191,25 @@ function cadastrarConta() { // NÃO FINALIZADO
                     parentalidade: null
                 },
                 dependentes: null,
-                email: "felipecodebreaker@email.com",
-                telefone: "(47) 91234-5678",
+                email: null,
+                telefone: null,
                 enderecoCompleto: {
-                    cep: "89.266-342",
-                    pais: "Brasil",
-                    estado: "Santa Catarina",
-                    cidade: "Jaraguá do Sul",
-                    bairro: "Três Rios do Norte",
-                    rua: "Adelino da Silva",
-                    numero: "31",
+                    cep: null,
+                    pais: null,
+                    estado: null,
+                    cidade: null,
+                    bairro: null,
+                    rua: null,
+                    numero: null,
                     complemento: null
                 },
-                cpf: "11101001101",
+                cpf: cpf,
                 cnpj: null
             },
-            saldo: 2000,
+            saldo: 0,
             bonus: {},
             logado: false,
-            senha: "0352",
+            senha: senhaUsuario,
             investimentos: {
                 rendaFixa: null,
                 rendaVariavel: null
@@ -183,15 +218,23 @@ function cadastrarConta() { // NÃO FINALIZADO
             bloqueada: false
         }
     )
+    console.log(`O numero da sua conta é ${contaAleatoria}`)
+    console.log(`Conta Cadastrada!`)
+
 }
+
 function verificarConta(numeroConta) { // VERIFICA SE EXISTE UMA CONTA COM O NUMERO DIGITADO PELO USUARIO
+    contaUsuario = null
     for(let i = 0; i < usuarios.length; i++) {
         if(usuarios[i].conta === numeroConta) {
             contaUsuario = usuarios[i]
-            return console.log(`Conta encontrada!`)
+            console.log(`Conta encontrada!`)
+            return true
+
         }
     }
-    return console.log(`Conta inválida! Verifique se os digitos estão corretos e tente novamente.`)
+    console.log(`Conta inválida! Verifique se os digitos estão corretos e tente novamente.`)
+    return false
 }
 
 function contaBloqueada(usuario) { // VERIFICA SE A CONTA QUE O USUARIO TENTANDO ACESSAR ESTA BLOQUEADA
@@ -214,9 +257,8 @@ function sacar() { // FAZ SAQUES NA CONTA LOGADA
         valorSaque = rs.questionFloat("Qual o valor do saque: ")
     }
     if(valorSaque > contaUsuario.saldo) {
-        console.logo(`O valor do saque solicitado excede o saldo atual da sua conta, por favor tente sacar um valor mais baixo`)
-    }
-    if(valorSaque > contaUsuario.limites.saque) {
+        console.log(`O valor do saque solicitado excede o saldo atual da sua conta, por favor tente sacar um valor mais baixo`)
+    }else if(valorSaque > contaUsuario.limites.saque) {
         console.log(`Desculpe, esse saque atinge o limite máximo da sua conta.\nSaque um valor mais baixo ou converse com o nosso suporte para aumentar\no limite de depósito da sua conta.`)
     }else{
         if(pedirSenhaTransacoes()){
@@ -256,7 +298,7 @@ function acessarConta() { // UTILIZA AS FUNCOES DE VERIFICACAO DE ACESSO PARA QU
 
 function pedirSenhaTransacoes() { // PEDE A SENHA PARA QUE O USUARIO EFETUE UMA TRANSAÇÃO
     do{
-        let pedirSenha = rs.question(`Digite a sua senha para concluir a transação : `)
+        let pedirSenha = rs.question(`Digite a sua senha para concluir a transacao : `)
         if(contaUsuario.senha === pedirSenha) {
             return true
         }
@@ -268,8 +310,8 @@ function pedirSenhaTransacoes() { // PEDE A SENHA PARA QUE O USUARIO EFETUE UMA 
     return false
 }
 
-function registrarNoHistorico(conta,tipo,valor,) { // REGISTRA UMA TRANSACAO NO HISTORICO DO USUARIO
-    conta.historico.push(`${tipo} realizado no valor de R$ ${valor}`)
+function registrarNoHistorico(conta,tipo,valor) { // REGISTRA UMA TRANSACAO NO HISTORICO DO USUARIO
+    conta.historico.push(`${tipo} realizado no valor de R$ ${valor}; Data: ${coletarDataHoraAtual()}`)
 }
 
 function depositar() { // DEPOSITA UM VALOR NA CONTA LOGADA
@@ -283,8 +325,8 @@ function depositar() { // DEPOSITA UM VALOR NA CONTA LOGADA
     }else{
         if(pedirSenhaTransacoes()){
             console.clear()
-            registrarNoHistorico(contaUsuario,"Depositar", valorDeposito)
-            contaUsuario.limites.debito -= valorDeposito
+            registrarNoHistorico(contaUsuario,"Deposito", valorDeposito)
+            contaUsuario.limites.deposito -= valorDeposito
             contaUsuario.saldo += valorDeposito
             console.log(`Deposito  de R$ ${valorDeposito.toFixed(2)} realizado com sucesso.`)
         }
@@ -312,6 +354,10 @@ function acessarOpcaoPrincipal(escolha) { // VERIFICA A OPCAO DIGITA PELO USUARI
         case 4:
             exibirDetalhesConta()
             sairDetalhesConta()
+            break
+        case 5:
+            exibirConversaComSuporte()
+            break
         case 0:
             contaUsuario.logado = false
             contaUsuario = null
@@ -322,13 +368,20 @@ function acessarOpcaoPrincipal(escolha) { // VERIFICA A OPCAO DIGITA PELO USUARI
 }
 
 function sairDetalhesConta() { // SAIR DOS DETALHES DA CONTA E VOLTAR AO MENU PRINCIPAL
-    let sair = rs.question(`\nDigite "0" para voltar ao menu inical`)
+    let sair = rs.questionInt(`\nDigite "0" para voltar ao menu inical`)
     while(sair !== 0) {
         console.clear()
         console.log(`Digito inválido. Tente um valor válido`)
-        exibirDetalheasConta()
+        exibirDetalhesConta()
         sair = rs.question(`\nDigite "0" para voltar ao menu inical`)
     }
+}
+
+function exibirConversaComSuporte() { // NÃO FINALIZADO
+    console.log("==========================")
+    console.log("1. Desejo aumentar o limite do meu saque")
+    console.log("2. Desejo aumentar o limite do meu depósito")
+    console.log("3. Desejo cancelar a minha conta")
 }
 
 function exibirDetalhesConta() { // EXIBI DETALHES DA CONTA COMO NOME COMPLETO, LIMITES DA CONTA E SALDO ATUAL
