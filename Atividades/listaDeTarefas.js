@@ -1,6 +1,6 @@
 let rs = require("readline-sync");
 let listaDeTarefas = []
-let sair = false
+let sair = null
 
 function exibirMenuInicial() {
     console.log(`\n===========================`)
@@ -66,18 +66,26 @@ function acessarOpcaoInicial(escolha) {
             adicionarTarefa()
             break
         case 3:
-            editarTarefa()
+            vizualizarItemDaLista()
             break
         case 4:
-            excluirTarefa()
+            editarTarefa()
             break
         case 5:
-            filtrarTarefas()
+            excluirTarefa()
+            break
+        case 6:
+            filtrarTarefa()
+            break
         case 0:
             console.log(`Saindo...`)
             sair = true
             break
     }
+}
+
+function vizualizarItemDaLista() {
+    let numeroItem = rs.qeustionInt(`Digite o numero do item da lista que voce deseja vizualizar: `)
 }
 
 function verificarListaDeTarefasVazia() {
@@ -91,15 +99,22 @@ function verListaDeTarefas() {
         console.log(`Atualmente a lista de tarefas esta vazia.\nAguarde alguem adicionar uma nova tarefa ou\nadicione voce mesmo através do menu inicial`)
         return
     }else{
-    console.clear()
+    console.log("\n".repeat(100))
     console.table(listaDeTarefas)
     }
 }
 
+function exibirTodasAsTarefas() {
+    for(let i = 0; i < listaDeTarefas.length; i++) {
+        exibirTarefaAdicionada(i)
+    }
+}
+
 function iniciar() {
+    sair = false
     do{
         exibirMenuInicial()
-        acessarOpcaoInicial(escolhaDeValor(0,4))
+        acessarOpcaoInicial(escolhaDeValor(0,6))
     }while(sair !== true)
 }
 
@@ -138,7 +153,7 @@ function verificarFormatoDataHora(data,hora) {
 }
 
 function verificarPrazoDaTarefa(data,hora) {
-    if(verificarStringVazia(data) || verificarStringVazia(hora) || verificarFormatoDataHora(data,hora)) {
+    if(verificarFormatoDataHora(data,hora)) {
         console.log(`Formato de data ou hora invalidos. Por favor tente novamente.`)
         return true
     }
@@ -146,13 +161,13 @@ function verificarPrazoDaTarefa(data,hora) {
 }
 
 function pedirPrazoDaTarefa() {
-    let data = rs.question("Digite a data (AAAA-MM-DD):");
-    let hora = rs.question("Digite a hora (HH:MM):");
-    apagarLinhas(2)
+    let data = rs.question("Digite a data prazo desta tarefa (AAAA-MM-DD):");
+    let hora = rs.question("Digite a hora prazo desta tarefa (HH:MM):");
+    apagarLinhas(3)
     while(verificarPrazoDaTarefa(data,hora)) {
-        data = rs.question("Digite a data (AAAA-MM-DD):");
-        hora = rs.question("Digite a hora (HH:MM):");  
-        apagarLinhas(3)
+        data = rs.question("Digite a data prazo desta tarefa (AAAA-MM-DD):");
+        hora = rs.question("Digite a hora prazo desta tarefa (HH:MM):");  
+        apagarLinhas(4)
     }
     let dataHora = new Date(`${data}T${hora}`);
     dataHora = formatarDataHora(dataHora)
@@ -162,12 +177,12 @@ function pedirPrazoDaTarefa() {
 
 function exibirTarefaAdicionada(indiceTarefa) {
     console.log(`==============================`)
-    console.log(`Titulo: ${indiceTarefa.titulo}`)
+    console.log(`Titulo: ${listaDeTarefas[indiceTarefa].titulo}`)
     console.log(`------------------------------`)
-    console.log(`Descricao: ${indiceTarefa.descricao}`)
+    console.log(`Descricao: ${listaDeTarefas[indiceTarefa].descricao}`)
     console.log(`------------------------------`)
-    console.log(`Data de inclusao da tarefa: ${indiceTarefa.dataAndHoraRegistro}`)
-    console.log(`Prazo de conclusao: ${indiceTarefa.prazoDaTarefa}`)
+    console.log(`Data de inclusao da tarefa: ${listaDeTarefas[indiceTarefa].dataAndHoraRegistro}`)
+    console.log(`Prazo de conclusao: ${listaDeTarefas[indiceTarefa].prazoDaTarefa}`)
     console.log(`==============================`)
     
 } 
@@ -176,7 +191,7 @@ function adicionarTarefa() {
     console.clear()
     listaDeTarefas.push({titulo: pedirTitulo(),descricao: pedirDescricao(), prazoDaTarefa: pedirPrazoDaTarefa(), dataAndHoraRegistro: coletarDataHoraAtual()})
     console.clear()
-    exibirTarefaAdicionada(listaDeTarefas[(listaDeTarefas.length) - 1])
+    exibirTarefaAdicionada((listaDeTarefas.length) - 1)
 }
 
 console.clear()
