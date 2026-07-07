@@ -1,6 +1,8 @@
-let rs = require("readline-sync");
+const rs = require("readline-sync");
 let listaDeTarefas = []
 let sair = null
+const limiteCaracateresTitulo = 20
+const limiteCaracateresDescricao = 50
 
 function exibirMenuInicial() {
     console.log(`\n===========================`)
@@ -16,14 +18,57 @@ function exibirMenuInicial() {
     console.log(`===========================\n`)
 }
 
-function formatarDataHora(dataHora) {
-    return new Intl.DateTimeFormat('pt-BR', {
-        timeZone: 'America/Sao_Paulo',
-        dateStyle: 'full',
-        timeStyle: 'short'
-    }).format(dataHora);
+function verificarFiltroNosTitulos(filtro) {
+    let filtrosEncontrados = 0
+    for(let i = 0; i < listaDeTarefas.length; i++) {
+        if(listaDeTarefas[i].titulo.includes(filtro)) {
+            exibirTituloDaTarefa(i)
+            filtrosEncontrados ++
+        }
+    }
+    if(filtrosEncontrados === 0) {
+        console.log(`Nenhum titulo com esse filtro foi encontrado.`)
+    }
 }
 
+function verificarFiltroNasDescricoes(filtro) {
+    let filtrosEncontrados = 0
+    for(let i = 0; i < listaDeTarefas.length; i++) {
+        if(listaDeTarefas[i].descricao.includes(filtro)) {
+            exibirDescricaoDaTarefa(i)
+            filtrosEncontrados ++
+        }
+    }
+    if(filtrosEncontrados === 0) {
+        console.log(`Nenhuma descricao com esse filtro foi encontrado.`)
+    }
+}
+
+function acessarTipoDeFiltro(escolha,filtro) {
+    switch(escolha) {
+        case 1:
+            verificarFiltroNosTitulos(filtro)
+            break
+        case 2:
+            verificarFiltroNasDescricoes(filtro)
+            break
+        case 0:
+            console.log(`Saindo dos filtro...`)
+            break
+    }
+}
+
+function filtrarTarefa() {
+    console.clear()
+    console.log(`Digite o tipo de filtro que voce deseja procurar: 1 - Titulo | 2 - Descricao | 0 - Sair`)
+    let tipoDeFiltro = escolhaDeValor(0,2)
+    let filtroDoUsuario = rs.question(`Digite o texto que voce deseja filtrar: `)
+    while(verificarStringVazia(filtroDoUsuario)) {
+        filtroDoUsuario = rs.question(`Digite o texto que voce deseja filtrar: `)
+    }
+    acessarTipoDeFiltro(tipoDeFiltro,filtroDoUsuario)
+
+}
 function apagarLinhas(numeroDeLinhas) {
     for(let i = 1; i < numeroDeLinhas; i++) {
         process.stdout.moveCursor(0, -1);
@@ -32,22 +77,13 @@ function apagarLinhas(numeroDeLinhas) {
     }
 }
 
-function coletarDataHoraAtual() {
-    dataHoraBrasil = new Intl.DateTimeFormat('pt-BR', {
-        timeZone: 'America/Sao_Paulo',
-        dateStyle: 'full',
-        timeStyle: 'short'
-    }).format(new Date());
-    return dataHoraBrasil
-}
-
 function escolhaDeValor(numMin, numMax){// PEDIR OPCAO DESEJADA
     opcao = rs.questionInt(`Digite a opcao desejada : `)
     apagarLinhas(1)
     while(validarEscolha(numMin, numMax, opcao)){
         console.log("Valor invalido, tente novamente");
         opcao = rs.questionInt(`\nDigite a opcao desejada : `)
-        apagarLinhas(2)
+        apagarLinhas(1)
     }
     return opcao
 }
@@ -84,8 +120,42 @@ function acessarOpcaoInicial(escolha) {
     }
 }
 
+function verificarNumeroDoItem(numeroItem) {
+    if(listaDeTarefas[numeroItem - 1]){
+        return false
+    }
+    console.log(`O item que voce digitou não existe, por favor tente um número válido`)
+    return true
+}
+
 function vizualizarItemDaLista() {
-    let numeroItem = rs.qeustionInt(`Digite o numero do item da lista que voce deseja vizualizar: `)
+    console.clear()
+    let numeroItem = rs.questionInt(`Digite o numero do item da lista que voce deseja vizualizar: `)
+    apagarLinhas(1)
+    while(verificarNumeroDoItem(numeroItem)) {
+        numeroItem = rs.questionInt(`Digite o numero do item da lista que voce deseja vizualizar: `)
+        console.clear()
+    }
+    console.clear()
+    exibirDescricaoDaTarefa(numeroItem - 1)
+}
+
+function exibirTituloDasTarefas() {
+    for(let i = 0; i < listaDeTarefas.length; i++) {
+        exibirTituloDaTarefa(i)
+    } 
+}
+
+function exibirDescricaoDaTarefa(indiceTarefa) {
+    console.log(`====================================`)
+    console.log(`${indiceTarefa + 1} - Descricao: ${listaDeTarefas[indiceTarefa].descricao}`)
+    console.log(`====================================`)
+}
+
+function exibirTituloDaTarefa(indiceTarefa) {
+    console.log(`====================================`)
+    console.log(`${indiceTarefa + 1} - Titulo: ${listaDeTarefas[indiceTarefa].titulo}`)
+    console.log(`====================================`)
 }
 
 function verificarListaDeTarefasVazia() {
@@ -93,20 +163,23 @@ function verificarListaDeTarefasVazia() {
     return false
 }
 
+function esperarUsuarioDigitarZero() {
+    let sair = rs.questionInt(`Digite 0 para voltar ao menu inicial : `)
+    apagarLinhas(1)
+    while(sair !== 0) {
+        sair = rs.questionInt(`Digite 0 para voltar ao menu inicial : `)
+    }
+    console.clear()
+}
+
 function verListaDeTarefas() {
+    console.clear()
     if(verificarListaDeTarefasVazia()) {
-        console.clear()
         console.log(`Atualmente a lista de tarefas esta vazia.\nAguarde alguem adicionar uma nova tarefa ou\nadicione voce mesmo através do menu inicial`)
         return
     }else{
-    console.log("\n".repeat(100))
-    console.table(listaDeTarefas)
-    }
-}
-
-function exibirTodasAsTarefas() {
-    for(let i = 0; i < listaDeTarefas.length; i++) {
-        exibirTarefaAdicionada(i)
+        exibirTituloDasTarefas()
+        esperarUsuarioDigitarZero()
     }
 }
 
@@ -126,72 +199,99 @@ function verificarStringVazia(string) {
     return false
 }
 
+function verificarLimiteDeCaracteresTitulo(titulo) {
+    if(titulo.length > limiteCaracateresTitulo) {
+        console.log(`Limite de caracteres atingido. Por favor tente colocar outro titulo.`)
+        return true
+    }
+    return false
+}
+
+function verificarLimiteDeCaracteresDescricao(descricao) {
+    if(descricao.length > limiteCaracateresDescricao) {
+        console.log(`Limite de caracteres atingido. Por favor tente colocar outra descricao.`)
+        return true
+    }
+    return false
+}
+
 function pedirTitulo() {
+    console.clear()
     let tituloDaTarefa = rs.question(`Escreva o titulo da tarefa.\nDica: escolha um titulo que melhor descreve essa tarefa, evite usar descricoes muito especificas.\nTitulo: `)
-    while(verificarStringVazia(tituloDaTarefa)) {
+    while(verificarStringVazia(tituloDaTarefa) || verificarLimiteDeCaracteresTitulo(tituloDaTarefa)) {
         tituloDaTarefa = rs.question(`Escreva o titulo da tarefa.\nDica: escolha um titulo que melhor descreve essa tarefa, evite usar descricoess muito especificas.\nTitulo: `)
+        console.clear()
     }
     console.clear()
     return tituloDaTarefa
 }
 
 function pedirDescricao() {
+    console.clear()
     let descricaoDaTarefa = rs.question(`Escreva a descricao da tarefa.\nDica: Evite informacoes irrelevantes e coloque observacoes se necessario.\nDescricao: `)
-    while(verificarStringVazia(descricaoDaTarefa)) {
+    while(verificarStringVazia(descricaoDaTarefa) || verificarLimiteDeCaracteresDescricao(descricaoDaTarefa)) {
         descricaoDaTarefa = rs.question(`Escreva a descricao da tarefa.\nDica: Evite informacoes irrelevantes e coloque observacoes se necessario.\nDescricao: `)
     }
-    console.clear()
     return descricaoDaTarefa
 }
 
-function verificarFormatoDataHora(data,hora) {
-    const formatoData = /^\d{4}-\d{2}-\d{2}$/
-    const formatoHora = /^([01]\d|2[0-3]):([0-5]\d)$/
-    if(!formatoHora.test(hora)) return true
-    if(!formatoData.test(data)) return true
-    return false
-}
-
-function verificarPrazoDaTarefa(data,hora) {
-    if(verificarFormatoDataHora(data,hora)) {
-        console.log(`Formato de data ou hora invalidos. Por favor tente novamente.`)
-        return true
-    }
-    return false
-}
-
-function pedirPrazoDaTarefa() {
-    let data = rs.question("Digite a data prazo desta tarefa (AAAA-MM-DD):");
-    let hora = rs.question("Digite a hora prazo desta tarefa (HH:MM):");
-    apagarLinhas(3)
-    while(verificarPrazoDaTarefa(data,hora)) {
-        data = rs.question("Digite a data prazo desta tarefa (AAAA-MM-DD):");
-        hora = rs.question("Digite a hora prazo desta tarefa (HH:MM):");  
-        apagarLinhas(4)
-    }
-    let dataHora = new Date(`${data}T${hora}`);
-    dataHora = formatarDataHora(dataHora)
-    console.clear()
-    return dataHora
-}
-
-function exibirTarefaAdicionada(indiceTarefa) {
-    console.log(`==============================`)
-    console.log(`Titulo: ${listaDeTarefas[indiceTarefa].titulo}`)
-    console.log(`------------------------------`)
-    console.log(`Descricao: ${listaDeTarefas[indiceTarefa].descricao}`)
-    console.log(`------------------------------`)
-    console.log(`Data de inclusao da tarefa: ${listaDeTarefas[indiceTarefa].dataAndHoraRegistro}`)
-    console.log(`Prazo de conclusao: ${listaDeTarefas[indiceTarefa].prazoDaTarefa}`)
-    console.log(`==============================`)
-    
-} 
-
 function adicionarTarefa() {
     console.clear()
-    listaDeTarefas.push({titulo: pedirTitulo(),descricao: pedirDescricao(), prazoDaTarefa: pedirPrazoDaTarefa(), dataAndHoraRegistro: coletarDataHoraAtual()})
+    listaDeTarefas.push({titulo: pedirTitulo(),descricao: pedirDescricao()})
     console.clear()
-    exibirTarefaAdicionada((listaDeTarefas.length) - 1)
+    console.log(`Tarefa cadastrada com sucesso!`)
+}
+
+function excluirTarefa() {
+    console.clear()
+    if(verificarListaDeTarefasVazia()) {
+        console.clear()
+        console.log(`Atualmente a lista de tarefas esta vazia.\nAguarde alguem adicionar uma nova tarefa ou\nadicione voce mesmo através do menu inicial`)
+        return
+    }
+    let numeroTarefa = rs.questionInt(`Digite o numero do item que voce deseja remover da lista : `)
+    while(verificarNumeroDoItem(numeroTarefa)) {
+        numeroTarefa = rs.question(`Digite o numero do item que voce deseja remover da lista : `)
+    }
+        listaDeTarefas.splice((numeroTarefa - 1), 1)
+        console.log(`Tarefa excluida com sucesso!`)
+}
+
+function acessarEscolhaEdicao(escolha,indiceTarefa) {
+    switch(escolha) {
+        case 1:
+            listaDeTarefas[indiceTarefa].titulo = pedirTitulo()
+            break
+        case 2:
+            listaDeTarefas[indiceTarefa].descricao = pedirDescricao()
+            break
+        case 0:
+            console.log(`Saindo da edicao...`)
+            break
+    }
+}
+
+function editarTarefaDeNumero(indiceTarefa) {
+    exibirTituloDaTarefa(indiceTarefa)
+    exibirDescricaoDaTarefa(indiceTarefa)
+    console.log(`O que voce deseja editar? 1 - Titulo | 2 - Descricao | 0 - Sair`)
+    let escolha = escolhaDeValor(0,2)
+    console.clear()
+    acessarEscolhaEdicao(escolha,indiceTarefa)
+}
+
+function editarTarefa() {
+    console.clear()
+    if(verificarListaDeTarefasVazia()) {
+        console.clear()
+        console.log(`Atualmente a lista de tarefas esta vazia.\nAguarde alguem adicionar uma nova tarefa ou\nadicione voce mesmo através do menu inicial`)
+        return
+    }
+    let numeroTarefa = rs.questionInt(`Digite o numero do item que voce deseja remover da lista : `)
+    while(verificarNumeroDoItem(numeroTarefa)) {
+        numeroTarefa = rs.question(`Digite o numero do item que voce deseja remover da lista : `)
+    }
+    editarTarefaDeNumero(numeroTarefa - 1)
 }
 
 console.clear()
